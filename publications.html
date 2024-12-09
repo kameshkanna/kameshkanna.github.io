@@ -9,9 +9,6 @@ navbar_title: Publications
   <div class="publications-list">
     {% for publication in publications %}
       <div class="publication-item">
-        {% if publication.image %}
-          <img src="{{ publication.image }}" alt="{{ publication.title }}" class="publication-image" />
-        {% endif %}
         <h2>{{ publication.title }}</h2>
         <p>{{ publication.excerpt }}</p>
       </div>
