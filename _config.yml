@@ -1,0 +1,15 @@
+title: My Personal Website
+email: your-email@example.com
+description: A personal website with a blog, portfolio, and contact page.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://yourusername.github.io" # the base hostname & protocol for your site
+twitter_username: your_twitter
+github_username: your_github
+linkedin_username: your_linkedin
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+ss
