@@ -10,10 +10,45 @@ navbar_title: Publications
     {% for publication in publications %}
       <div class="publication-item">
         <h2>{{ publication.title }}</h2>
-        <p>{{ publication.excerpt }}</p>
+        <p><strong>Date:</strong> {{ publication.date | date: "%B %d, %Y" }}</p>
+        <p><strong>Publication:</strong> {{ publication.pub }}</p>
+        {% if publication.pub_post %}
+          <p><strong>Status:</strong> {{ publication.pub_post }}</p>
+        {% endif %}
+        <p><strong>Abstract:</strong> {{ publication.abstract }}</p>
+        <p><strong>Authors:</strong> {{ publication.authors | join: ", " }}</p>
+        <p>
+          {% for key, link in publication.links %}
+            <a href="{{ link }}" target="_blank">{{ key }}</a>{% unless forloop.last %} | {% endunless %}
+          {% endfor %}
+        </p>
       </div>
     {% endfor %}
   </div>
 {% else %}
   <p>No publications available.</p>
 {% endif %}
+
+<style>
+.publications-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publication-item {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.publication-item h2 {
+  margin-top: 0;
+}
+
+.publication-item p {
+  margin: 5px 0;
+}
+</style>
