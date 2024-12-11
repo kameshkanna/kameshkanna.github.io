@@ -1,57 +1,32 @@
 ---
 layout: default
-title: Publications
+title : Publications
 navbar_title: Publications
+body_attr: >-
+  data-spy="scroll" data-target="#navbar-year" data-offset="100"
 ---
 
-{% assign publications = site.publications %}
-{% if publications %}
-  <div class="publications-list">
-    {# {% for publication in publications %} #}
-      <div class="publication-item">
-        <h2>{{ publication.title }}</h2>
-        <p><strong>Date:</strong> {{ publication.date | date: "%B %d, %Y" }}</p>
-        <p><strong>Publication:</strong> {{ publication.pub }}</p>
-        {% if publication.pub_post %}
-          <p><strong>Status:</strong> {{ publication.pub_post }}</p>
-        {% endif %}
-        <p><strong>Abstract:</strong> {{ publication.abstract }}</p>
-        <p><strong>Authors:</strong> {{ publication.authors | join: ", " }}</p>
-        <p>
-          {% if publication.links %}
-            <strong>Links:</strong>
-            {% for key, link in publication.links %}
-              <a href="{{ link }}" target="_blank">{{ key }}</a>{% unless forloop.last %} | {% endunless %}
+{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
+
+<div class="row">
+    <div class="col-12 col-lg-10">
+        {% for year in pubs_by_year %}
+        {% assign num_papers = year.items | size %}
+        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
+        <div class="my-0 p-0 bg-white shadow-sm rounded-sm">
+            {% for item in year.items %}
+                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
             {% endfor %}
-          {% endif %}
-        </p>
-      </div>
-    {# {% endfor %} #}
-  </div>
-{% else %}
-  <p>No publications available.</p>
-{% endif %}
+        </div>
+        {% endfor %}
+    </div>
 
-<style>
-.publications-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
+    <div class="col-2 d-none d-lg-block">
+        <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
+            {% for year in pubs_by_year %}
+            <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
 
-.publication-item {
-  margin-bottom: 30px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-}
-
-.publication-item h2 {
-  margin-top: 0;
-}
-
-.publication-item p {
-  margin: 5px 0;
-}
-</style>
+</div>
