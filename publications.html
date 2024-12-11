@@ -7,7 +7,7 @@ navbar_title: Publications
 {% assign publications = site.publications %}
 {% if publications %}
   <div class="publications-list">
-    {% for publication in publications %}
+    {# {% for publication in publications %} #}
       <div class="publication-item">
         <h2>{{ publication.title }}</h2>
         <p><strong>Date:</strong> {{ publication.date | date: "%B %d, %Y" }}</p>
@@ -26,7 +26,7 @@ navbar_title: Publications
           {% endif %}
         </p>
       </div>
-    {% endfor %}
+    {# {% endfor %} #}
   </div>
 {% else %}
   <p>No publications available.</p>
