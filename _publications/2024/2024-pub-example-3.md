@@ -8,7 +8,7 @@ abstract: >-
 authors:
   - Kamesh R
 links:
-  Paper: https://arxiv.org/pdf/2410.08130
-  Abstract: https://arxiv.org/abs/2410.08130
+  Paper: "https://arxiv.org/pdf/2410.08130"
+  Abstract: "https://arxiv.org/abs/2410.08130"
 ---
 
