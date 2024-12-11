@@ -21,7 +21,7 @@ twitter: edkamesh  # Do not include the '@' symbol
 short_bio_text_justify: false
 short_bio: >-
   <p>
-  Hi there! I'm <strong>Kamesh R (காமேஷ்)</strong>, an AI researcher working on Reasoning and Quantization techniques.
+  Hi there! I'm <strong>Kamesh R (காமேஷ்)</strong> from Chennai, India, an AI researcher working on Reasoning and Quantization techniques.
   </p>
   <p>
   I absolutely love <strong>தமிழ்</strong>, my mother tongue, and I take pride in exploring its history and it's linguistic richness.
@@ -45,8 +45,8 @@ education:
     Undergraduate Student
   date: Sep. 2022 - present
 
-# experience:
-# - name: Peking University
-#   logo: /assets/images/badges/PKU_red.png
-#   position: Research Intern
-#   date: Sep. 2019 - Jul. 2021
+experience:
+- name: Sathyabama Institute of Science and Technology
+  logo: /assets/images/badges/OIP.jpg
+  position: Undergraduate Research Assistant
+  date: Sep. 2024 - Present
