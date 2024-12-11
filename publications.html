@@ -4,3 +4,66 @@ title: Publications
 navbar_title: Publications
 ---
 
+{% assign publications = site.publications %}
+{% if publications %}
+  <div class="publications-list">
+    {% for publication in publications %}
+      <div class="publication-item">
+        <h2>{{ publication.title }}</h2>
+        <p><strong>Date:</strong> {{ publication.date | date: "%B %d, %Y" }}</p>
+        <p><strong>Publication:</strong> {{ publication.pub }}</p>
+        {% if publication.pub_post %}
+          <p><strong>Status:</strong> {{ publication.pub_post }}</p>
+        {% endif %}
+        <p><strong>Abstract:</strong> {{ publication.abstract }}</p>
+        <p><strong>Authors:</strong> {{ publication.authors | join: ", " }}</p>
+        <p>
+          {% if publication.links %}
+            {% for key, link in publication.links %}
+              <a href="{{ link }}" target="_blank">{{ key }}</a>{% unless forloop.last %} | {% endunless %}
+            {% endfor %}
+          {% endif %}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No publications available.</p>
+{% endif %}
+
+<style>
+.publications-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.publication-item {
+  margin-bottom: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.publication-item h2 {
+  margin-top: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.publication-item p {
+  margin: 5px 0;
+  line-height: 1.6;
+}
+
+.publication-item a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.publication-item a:hover {
+  text-decoration: underline;
+}
+</style>
+

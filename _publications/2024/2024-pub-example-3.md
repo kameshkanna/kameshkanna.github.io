@@ -4,7 +4,7 @@ date:           2024-10-27 00:01:00 +0800
 selected:       true
 pub:            "International Conference on Learning Representations (ICLR)"
 # pub_pre:        "Submitted to "
-pub_post:       'Under review.'
+#pub_post:       'Under review.'
 #pub_last:       ' <span class="badge badge-pill badge-publication badge-success">Spotlight</span>'
 #pub_date:       "2024"
 
