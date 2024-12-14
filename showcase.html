@@ -4,11 +4,56 @@ title : Showcase
 navbar_title: Showcase
 ---
 
-{% assign showcase_items = site.showcase | where: "show", true %}
+{% assign showcase_items = site.data.showcase | where: "show", true %}
 {% if showcase_items %}
-  {% assign sorted_items = showcase_items | sort: "date" | reverse %}
-  {% for item in sorted_items %}
-    <div>{{ item.title }}</div>
+  <h1>My Showcase</h1>
+  <p>Welcome to my personal showcase! Here, I share my passions, projects, and creative works that reflect who I am.</p>
+
+  <h2>Photography</h2>
+  <p>I have a deep love for photography, capturing moments that tell stories and evoke emotions. Here’s a collection of some of my favorite shots:</p>
+
+  <!-- Carousel for photos -->
+  <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for photo in showcase_items | where: "type", "photo" %}
+        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+          <img src="{{ photo.image_url }}" class="d-block w-100" alt="{{ photo.title }}">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ photo.title }}</h5>
+            <p>{{ photo.description }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#photoCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#photoCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <h2>Poetry & Writing</h2>
+  <p>In my free time, I pen down poems and short pieces, often exploring themes of romance and introspection.</p>
+  {% for writing in showcase_items | where: "type", "writing" %}
+    <div class="writing-showcase" style="text-align: center; margin-bottom: 2rem;">
+      <div class="writing-content" style="background: url('{{ writing.image_url }}') no-repeat center center; background-size: cover; padding: 2rem; color: white; border-radius: 10px;">
+        <blockquote style="font-style: italic;">{{ writing.content }}</blockquote>
+        <h3 style="margin-top: 1rem;">{{ writing.title }}</h3>
+      </div>
+    </div>
+  {% endfor %}
+
+  <h2>Projects</h2>
+  <p>I’m passionate about technology and research, which is reflected in the projects I've worked on. From building AI models to exploring Tamil literature, my projects aim to make an impact.</p>
+  {% for project in showcase_items | where: "type", "project" %}
+    <div class="project-showcase" style="margin-bottom: 2rem;">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+      <a href="{{ project.link }}">Learn more</a>
+    </div>
   {% endfor %}
 {% else %}
   <p>No showcase items available.</p>

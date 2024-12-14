@@ -1,0 +1,33 @@
+- title: "Sunset Over the Hills"
+  type: "photo"
+  image_url: "/assets/images/photos/sunset.jpg"
+  description: "A stunning sunrise I captured during a hike."
+  show: true
+
+- title: "Morning Dew"
+  type: "photo"
+  image_url: "/assets/images/photos/plam.jpg"
+  description: "Palm trees in the tropical climate"
+  show: true
+
+- title: "Morning Dew"
+  type: "photo"
+  image_url: "/assets/images/photos/clg.jpg"
+  description: "Clouds in the sky"
+  show: true
+
+- title: "Eternal Flame"
+  type: "writing"
+  content: "The warmth of your smile melts the frost of my solitude, kindling an eternal flame within my soul."
+  show: true
+
+- title: "Whispers of the Wind"
+  type: "writing"
+  content: "Through the rustling leaves and whispers of the wind, I hear your call, a melody that lingers in the silence."
+  show: true
+
+- title: "TamilBERT"
+  type: "project"
+  description: "A Tamil-focused language model based on Tamil Sangam literature aims to preserve and advance Tamil's linguistic and cultural heritage. By leveraging Sangam texts, classical poetry, and modern literature, the model captures the essence of Tamil's evolution and nuances. Its applications include linguistic analysis, cultural research, translation, and education. Focused solely on Tamil, this model enables scholars and the community to access, study, and engage with one of the world's oldest languages in meaningful ways, blending traditional knowledge with modern AI advancements."
+  link: "/projects/tamilbert/"
+  show: true
