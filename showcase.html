@@ -14,15 +14,15 @@ navbar_title: Showcase
 
   <!-- Add a container class for better alignment -->
   <div class="container">
-    <!-- Carousel for photos -->
-    <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- Carousel for photos with compact styling -->
+    <div id="photoCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 400px; margin: auto;">
       <div class="carousel-inner">
         {% for photo in showcase_items | where: "type", "photo" %}
           <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ photo.image_url }}" class="d-block w-100 img-fluid" alt="{{ photo.title }}">
-            <div class="carousel-caption d-none d-md-block">
-              <h5>{{ photo.title }}</h5>
-              <p>{{ photo.description }}</p>
+            <img src="{{ photo.image_url }}" class="d-block w-100 img-fluid" alt="{{ photo.title }}" style="height: 300px; object-fit: cover;">
+            <div class="carousel-caption d-none d-md-block" style="background-color: rgba(0, 0, 0, 0.5); padding: 0.5rem;">
+              <h5 style="font-size: 1rem;">{{ photo.title }}</h5>
+              <p style="font-size: 0.8rem;">{{ photo.description }}</p>
             </div>
           </div>
         {% endfor %}
