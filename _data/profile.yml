@@ -20,18 +20,19 @@ twitter: edkamesh  # Do not include the '@' symbol
 
 short_bio_text_justify: false
 short_bio: >-
-  <p>
-  Hi there! I'm <strong>Kamesh R (காமேஷ்)</strong> from Chennai, India. AI researcher working on Reasoning and Quantization techniques.
-  </p>
-  <p>
-  I absolutely love <strong>தமிழ்</strong>, my mother tongue, and I take pride in exploring its history and it's linguistic richness.
-  </p>
-  <p>
-  When it comes to football, I'm a devoted follower of the Premier League.  
-  Nothing excites me more than cheering for <a href="https://www.liverpoolfc.com" target="_blank">Liverpool FC</a>, the club I passionately support. ❤️  
-  I also enjoy teaching and writing in my free time. Curiosity drives me, and I'm always curious to learn more and explore
-  new ideas. 😊
-  </p>
+ <p>
+  Hey there! I'm <strong>Kamesh R (காமேஷ்)</strong> from Chennai, India — an AI researcher deeply interested in <strong>reasoning systems</strong>, <strong>AI for science</strong>, and <strong>quantization techniques</strong> for efficient, scalable machine learning models. My work focuses on making AI systems think more logically, reason better, and run lighter without losing performance.
+</p>
+<p>
+  I’m passionate about exploring the fundamentals of machine learning theory and how reasoning capabilities can be enhanced in modern AI systems. I also enjoy working on open-source projects and collaborating with peers on research that pushes boundaries.
+</p>
+<p>
+  Beyond research, I'm proudly rooted in my culture. I have a deep love for <strong>தமிழ்</strong>, my mother tongue, and enjoy studying its history, literature, and linguistic richness.  
+</p>
+<p>
+  And when I’m not coding or writing papers, you’ll probably find me cheering for <a href="https://www.liverpoolfc.com" target="_blank">Liverpool FC</a> in the Premier League. ❤️  
+</p>
+
 
 
 portrait_url: /assets/images/photos/profile.jpg
