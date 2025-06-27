@@ -43,13 +43,27 @@ education:
   position: >- 
     Department of Computer Science and Engineering <br/>
     Undergraduate Student
-  date: Sep. 2022 - present
+  date: Sep 2022 - present
 
 experience:
 - name: Sathyabama Institute of Science and Technology
   logo: /assets/images/badges/OIP.jpg
   position: Undergraduate Research Assistant
-  date: Sep. 2024 - Present
+  date: Sep 2024 - Present
+
 - name: IIIT-Hyderabad
+  logo: /assets/images/badges/IIIT-Hyderabad.png
   position: Research Intern
   date: May 2025 - Present
+
+- name: CobuildX.ai (formerly OptimisticAI.com)
+  logo: /assets/images/badges/intern.png
+  position: AI Engineer Intern
+  date: Dec 2024 - Jan 2025
+
+- name: Stealth Startup
+  logo: /assets/images/badges/stealth.png
+  position: AI Engineer Intern
+  date: Jan 2025 - Apr 2025
+
+
