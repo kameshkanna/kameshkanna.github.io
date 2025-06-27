@@ -11,16 +11,24 @@ body_attr: >-
 <div class="row">
     <div class="col-12 col-lg-10">
         {% for year in pubs_by_year %}
-        {% assign num_papers = year.items | size %}
         <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
-        <div class="my-0 p-0 bg-white shadow-sm rounded-sm">
+        <ol class="pl-3">
             {% for item in year.items %}
-                {% include widgets/publication_item.html item=item hide_bottom_border=forloop.last first=forloop.first last=forloop.last %}
+            <li class="mb-3">
+                <strong>{{ item.title }}</strong><br/>
+                {% include widgets/author_list.html authors=item.authors %}<br/>
+                <i>{{ item.pub }}</i>{% if item.pub_date %}, {{ item.pub_date }}{% endif %}{% if item.pub_post %} {{ item.pub_post }}{% endif %}
+                {% if item.links %}
+                    {% for link in item.links %}
+                        <a href="{{ link[1] }}" target="_blank">[{{ link[0] }}]</a>
+                    {% endfor %}
+                {% endif %}
+                {% if item.abstract %}<br/><span class="text-muted small">{{ item.abstract }}</span>{% endif %}
+            </li>
             {% endfor %}
-        </div>
+        </ol>
         {% endfor %}
     </div>
-
     <div class="col-2 d-none d-lg-block">
         <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
             {% for year in pubs_by_year %}
@@ -28,5 +36,4 @@ body_attr: >-
             {% endfor %}
         </div>
     </div>
-
 </div>
