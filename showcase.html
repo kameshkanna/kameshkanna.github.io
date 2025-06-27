@@ -1,31 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Showcase - Kamesh R</title>
-  <link rel="stylesheet" href="/assets/css/global.css">
-</head>
-<body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/publications.html">Publications</a>
-    <a href="/teaching.html">Teaching</a>
-    <a href="/showcase.html">Showcase</a>
-  </nav>
-  <main>
-    <h1>Showcase</h1>
-    <ul>
-      <li><strong>Sunset Over the Hills</strong> – A stunning sunrise I captured during a hike.</li>
-      <li><strong>Morning Dew</strong> – Palm trees in the tropical climate</li>
-      <li><strong>Morning Dew</strong> – Clouds in the sky</li>
-      <li><strong>Eternal Flame</strong> – The warmth of your smile melts the frost of my solitude, kindling an eternal flame within my soul.</li>
-      <li><strong>Whispers of the Wind</strong> – Through the rustling leaves and whispers of the wind, I hear your call, a melody that lingers in the silence.</li>
-      <li><strong>TamilBERT</strong> – A Tamil-focused language model based on Tamil Sangam literature aims to preserve and advance Tamil's linguistic and cultural heritage. By leveraging Sangam texts, classical poetry, and modern literature, the model captures the essence of Tamil's evolution and nuances. Its applications include linguistic analysis, cultural research, translation, and education. Focused solely on Tamil, this model enables scholars and the community to access, study, and engage with one of the world's oldest languages in meaningful ways, blending traditional knowledge with modern AI advancements.</li>
-    </ul>
-  </main>
-  <footer>
-    &copy; 2024 Kamesh R
-  </footer>
-</body>
-</html>
+---
+layout: default
+title : Showcase
+navbar_title: Showcase
+---
+
+{% assign showcase_items = site.showcase | where: "show", true %}
+{% if showcase_items %}
+  {% assign sorted_items = showcase_items | sort: "date" | reverse %}
+  {% for item in sorted_items %}
+    <div>{{ item.title }}</div>
+  {% endfor %}
+{% else %}
+  <p>No showcase items available.</p>
+{% endif %}

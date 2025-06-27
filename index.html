@@ -1,53 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kamesh R</title>
-  <link rel="stylesheet" href="/assets/css/global.css">
-  <style>
-    body { max-width: 700px; margin: 40px auto; font-family: 'Lato', sans-serif; background: #fff; color: #222; }
-    nav { margin-bottom: 2em; }
-    nav a { margin-right: 1.5em; color: #007acc; text-decoration: none; font-weight: 500; }
-    nav a:hover { text-decoration: underline; }
-    h1 { font-size: 2.5em; margin-bottom: 0.2em; }
-    .bio { margin-bottom: 2em; font-size: 1.1em; }
-    footer { margin-top: 3em; color: #888; font-size: 0.95em; text-align: center; }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/publications.html">Publications</a>
-    <a href="/teaching.html">Teaching</a>
-    <a href="/showcase.html">Showcase</a>
-  </nav>
-  <main>
-    <h1>Kamesh R</h1>
-    <div class="bio">
-      Hi there! I'm <strong>Kamesh R (காமேஷ்)</strong> from Chennai, India. AI researcher working on Reasoning and Quantization techniques.<br>
-      I absolutely love <strong>தமிழ்</strong>, my mother tongue, and I take pride in exploring its history and linguistic richness.<br>
-      When it comes to football, I'm a devoted follower of the Premier League. Nothing excites me more than cheering for Liverpool FC, the club I passionately support. I also enjoy teaching and writing in my free time. Curiosity drives me, and I'm always curious to learn more and explore new ideas.<br>
-      <a href="mailto:kameshrajeshkanna@gmail.com">kameshrajeshkanna@gmail.com</a>
-    </div>
-    <h2>Education</h2>
-    <ul>
-      <li><strong>Sathyabama Institute of Science and Technology</strong><br>
-        Department of Computer Science and Engineering<br>
-        Undergraduate Student<br>
-        <em>Sep. 2022 - present</em>
-      </li>
-    </ul>
-    <h2>Experience</h2>
-    <ul>
-      <li><strong>Sathyabama Institute of Science and Technology</strong> – Undergraduate Research Assistant<br><em>Sep. 2024 - March 2025</em></li>
-      <li><strong>Stealth Startup</strong> – AI Research Intern<br><em>January 2025 - May 2025</em></li>
-      <li><strong>CobuildX.ai (formerly OptimisticAI.com)</strong> – AI Research Intern<br><em>December 2024 - January 2025</em></li>
-      <li><strong>IIIT-Hyderabad</strong> – Research Intern<br><em>May 2025 - Present</em></li>
-    </ul>
-  </main>
-  <footer>
-    &copy; 2024 Kamesh R
-  </footer>
-</body>
-</html>
+---
+layout: default
+title : Homepage
+navbar_title: Home
+---
+{% include widgets/profile_card.html %}
+
+{% include widgets/debug_repo_name.html %}
+
+{% include widgets/debug_url.html %}
+
+{% if site.data.display.homepage.show_experience %}
+    {% include widgets/experience_card.html %}
+{% endif %}
+
+{% if site.data.display.homepage.show_news %}
+    {% assign count_news = site.news | size %}
+    {% if count_news > 0 %}
+        {% include widgets/news_card.html limit=site.data.display.homepage.num_news %}
+    {% endif %}
+{% endif %}
+
+{% if site.data.display.homepage.show_selected_publications %}
+    {% assign pubs = site.publications | sort: "date" | reverse | where: "selected", true %}
+    {% 
+        include widgets/publication_card.html 
+        publications=pubs
+        title='<i class="fas fa-star"></i> Selected Publications'
+    %}
+{% endif %}

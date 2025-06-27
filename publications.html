@@ -1,52 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Publications - Kamesh R</title>
-  <link rel="stylesheet" href="/assets/css/global.css">
-  <style>
-    body { max-width: 700px; margin: 40px auto; font-family: 'Lato', sans-serif; background: #fff; color: #222; }
-    nav { margin-bottom: 2em; }
-    nav a { margin-right: 1.5em; color: #007acc; text-decoration: none; font-weight: 500; }
-    nav a:hover { text-decoration: underline; }
-    h1 { font-size: 2em; margin-bottom: 1em; }
-    h2 { font-size: 1.2em; margin-top: 2em; }
-    ol { padding-left: 1.2em; }
-    li { margin-bottom: 1.2em; }
-    .venue { font-style: italic; color: #555; }
-  </style>
-</head>
-<body>
-  <nav>
-    <a href="/">Home</a>
-    <a href="/publications.html">Publications</a>
-    <a href="/teaching.html">Teaching</a>
-    <a href="/showcase.html">Showcase</a>
-  </nav>
-  <main>
-    <h1>Publications</h1>
-    {% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
-    {% for year in pubs_by_year %}
-      <h2>{{ year.name }}</h2>
-      <ol>
-        {% for item in year.items %}
-        <li>
-          <strong>{{ item.title }}</strong><br>
-          {% include widgets/author_list.html authors=item.authors %}<br>
-          <span class="venue">{{ item.pub }}</span>{% if item.pub_date %}, {{ item.pub_date }}{% endif %}
-          {% if item.links %}
-            {% for link in item.links %}
-              <a href="{{ link[1] }}" target="_blank">[{{ link[0] }}]</a>
+---
+layout: default
+title : Publications
+navbar_title: Publications
+body_attr: >-
+  data-spy="scroll" data-target="#navbar-year" data-offset="100"
+---
+
+{% assign pubs_by_year = site.publications | sort: "date" | reverse | group_by_exp: "item", "item.date | date: '%Y'" %}
+
+<div class="row">
+    <div class="col-12 col-lg-10">
+        {% for year in pubs_by_year %}
+        <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
+        <ol class="pl-3">
+            {% for item in year.items %}
+            <li class="mb-3">
+                <strong>{{ item.title }}</strong><br/>
+                {% include widgets/author_list.html authors=item.authors %}<br/>
+                <i>{{ item.pub }}</i>{% if item.pub_date %}, {{ item.pub_date }}{% endif %}{% if item.pub_post %} {{ item.pub_post }}{% endif %}
+                {% if item.links %}
+                    {% for link in item.links %}
+                        <a href="{{ link[1] }}" target="_blank">[{{ link[0] }}]</a>
+                    {% endfor %}
+                {% endif %}
+                {% if item.abstract %}<br/><span class="text-muted small">{{ item.abstract }}</span>{% endif %}
+            </li>
             {% endfor %}
-          {% endif %}
-        </li>
+        </ol>
         {% endfor %}
-      </ol>
-    {% endfor %}
-  </main>
-  <footer>
-    &copy; 2024 Kamesh R
-  </footer>
-</body>
-</html>
+    </div>
+    <div class="col-2 d-none d-lg-block">
+        <div id="navbar-year" class="nav nav-pills flex-column sticky-top" style="top: 80px">
+            {% for year in pubs_by_year %}
+            <a class="nav-link d-block" href="#year-{{ year.name }}">{{ year.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
