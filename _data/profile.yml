@@ -3,9 +3,8 @@ secondary_name: ""
 navbar_name: "Kamesh R"
 
 positions:
-- name: Sathyabama Institute of Science and Technology
-  position: B.Tech in Computer Science and Engineering
-
+  - name: Sathyabama Institute of Science and Technology
+    position: B.Tech in Computer Science and Engineering
 
 email: "kameshrajeshkanna@gmail.com"
 #cv_link: amber-betteanne-66.tiiny.site
@@ -20,53 +19,45 @@ twitter: edkamesh  # Do not include the '@' symbol
 
 short_bio_text_justify: false
 short_bio: >-
- <p>
-  Hey there! I'm <strong>Kamesh R (காமேஷ்)</strong> from Chennai, India — an AI researcher deeply interested in <strong>reasoning systems</strong>, <strong>AI for science</strong>, and <strong>quantization techniques</strong> for efficient, scalable machine learning models. My work focuses on making AI systems think more logically, reason better, and run lighter without losing performance.
-</p>
-<p>
-  I’m passionate about exploring the fundamentals of machine learning theory and how reasoning capabilities can be enhanced in modern AI systems. I also enjoy working on open-source projects and collaborating with peers on research that pushes boundaries.
-</p>
-<p>
-  Beyond research, I'm proudly rooted in my culture. I have a deep love for <strong>தமிழ்</strong>, my mother tongue, and enjoy studying its history, literature, and linguistic richness.  
-</p>
-<p>
-  And when I’m not coding or writing papers, you’ll probably find me cheering for <a href="https://www.liverpoolfc.com" target="_blank">Liverpool FC</a> in the Premier League. ❤️  
-</p>
-
-
+  <p>
+    Hey there! I'm <strong>Kamesh R (காமேஷ்)</strong> from Chennai, India — an AI researcher deeply interested in <strong>reasoning systems</strong>, <strong>AI for science</strong>, and <strong>quantization techniques</strong> for efficient, scalable machine learning models. My work focuses on making AI systems think more logically, reason better, and run lighter without losing performance.
+  </p>
+  <p>
+    I'm passionate about exploring the fundamentals of machine learning theory and how reasoning capabilities can be enhanced in modern AI systems. I also enjoy working on open-source projects and collaborating with peers on research that pushes boundaries.
+  </p>
+  <p>
+    Beyond research, I'm proudly rooted in my culture. I have a deep love for <strong>தமிழ்</strong>, my mother tongue, and enjoy studying its history, literature, and linguistic richness.  
+  </p>
+  <p>
+    And when I'm not coding or writing papers, you'll probably find me cheering for <a href="https://www.liverpoolfc.com" target="_blank">Liverpool FC</a> in the Premier League. ❤️  
+  </p>
 
 portrait_url: /assets/images/photos/profile.jpg
 
-
 education:
-- name: Sathyabama Institute of Science and Technology
-  logo: /assets/images/badges/OIP.jpg
-  position: >- 
-    Department of Computer Science and Engineering <br/>
-    Undergraduate Student
-  date: Sep 2022 - present
+  - name: Sathyabama Institute of Science and Technology
+    logo: /assets/images/badges/OIP.jpg
+    position: >-
+      Department of Computer Science and Engineering <br/>
+      Undergraduate Student
+    date: Sep 2022 - present
 
 experience:
-
-- name: IIIT-Hyderabad
-  logo: /assets/images/badges/iiit-logo.jpg
-  position: Research Intern
-  date: May 2025 - Present
-
-- name: Stealth Startup
-  logo: /assets/images/badges/stealth.png
-  position: AI Engineer Intern
-  date: Jan 2025 - Apr 2025
-  
-  
-- name: CobuildX.ai (formerly OptimisticAI.com)
-  logo: /assets/images/badges/intern.jpeg
-  position: AI Engineer Intern
-  date: Dec 2024 - Jan 2025
-
-- name: Sathyabama Institute of Science and Technology
-  logo: /assets/images/badges/OIP.jpg
-  position: Undergraduate Research Assistant
-  date: Sep 2024 - December 2024
+  - name: IIIT-Hyderabad
+    logo: /assets/images/badges/iiit-logo.jpg
+    position: Research Intern
+    date: May 2025 - Present
+  - name: Stealth Startup
+    logo: /assets/images/badges/stealth.png
+    position: AI Engineer Intern
+    date: Jan 2025 - Apr 2025
+  - name: CobuildX.ai (formerly OptimisticAI.com)
+    logo: /assets/images/badges/intern.jpeg
+    position: AI Engineer Intern
+    date: Dec 2024 - Jan 2025
+  - name: Sathyabama Institute of Science and Technology
+    logo: /assets/images/badges/OIP.jpg
+    position: Undergraduate Research Assistant
+    date: Sep 2024 - Dec 2024
 
 
