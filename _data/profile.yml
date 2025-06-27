@@ -49,7 +49,19 @@ experience:
 - name: Sathyabama Institute of Science and Technology
   logo: /assets/images/badges/OIP.jpg
   position: Undergraduate Research Assistant
-  date: Sep. 2024 - Present
+  date: Sep. 2024 - March 2025
+
+- name: Stealth Startup
+  logo: /assets/images/badges/stealth.png
+  position: AI Research Intern
+  date: January 2025 - May 2025
+
+- name: CobuildX.ai (formerly OptimisticAI.com)
+  logo: /assets/images/badges/intern.jpg
+  position: AI Research Intern
+  date: December 2024 - January 2025
+
 - name: IIIT-Hyderabad
+  logo: /assets/images/badges/iiit-logo.jpeg
   position: Research Intern
   date: May 2025 - Present
