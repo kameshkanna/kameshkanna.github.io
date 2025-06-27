@@ -12,21 +12,19 @@ body_attr: >-
     <div class="col-12 col-lg-10">
         {% for year in pubs_by_year %}
         <h2 class="pt-4" id="year-{{ year.name }}">{{ year.name }}</h2>
-        <ol class="pl-3">
+        <div>
             {% for item in year.items %}
-            <li class="mb-3">
+            <div class="mb-3">
                 <strong>{{ item.title }}</strong><br/>
-                {% include widgets/author_list.html authors=item.authors %}<br/>
-                <i>{{ item.pub }}</i>{% if item.pub_date %}, {{ item.pub_date }}{% endif %}{% if item.pub_post %} {{ item.pub_post }}{% endif %}
+                {% include widgets/author_list.html authors=item.authors %}
                 {% if item.links %}
                     {% for link in item.links %}
                         <a href="{{ link[1] }}" target="_blank">[{{ link[0] }}]</a>
                     {% endfor %}
                 {% endif %}
-                {% if item.abstract %}<br/><span class="text-muted small">{{ item.abstract }}</span>{% endif %}
-            </li>
+            </div>
             {% endfor %}
-        </ol>
+        </div>
         {% endfor %}
     </div>
     <div class="col-2 d-none d-lg-block">
