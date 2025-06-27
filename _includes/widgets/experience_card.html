@@ -1,20 +1,21 @@
-<div class="row mt-3">
+<div class="row mt-4">
     <div class="col">
         <div class="card border-0 shadow-sm bg-white">
-            <div class="card-body p-4">
+            <div class="card-body p-5">
                 <div class="row">
                     {% if site.data.profile.experience %}
                     <div class="col-12">
-                        <div class="mx-2 my-1">
-                            <h6>Experience</h6>
+                        <div class="mx-2 my-2">
+                            <h4 class="mb-4">Experience</h4>
                             <div>
                                 {% for item in site.data.profile.experience %}
-                                <div class="mb-2 d-flex align-items-center">
+                                <div class="mb-4 d-flex align-items-center" style="min-height: 48px;">
                                     {% if item.logo %}
-                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" style="width: 20px; height: 20px; object-fit: contain; margin-right: 8px;">
+                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" style="width: 40px; height: 40px; object-fit: contain; margin-right: 16px;">
                                     {% endif %}
                                     <div>
-                                        <strong>{{ item.name }}</strong>, {{ item.position }}{% if item.date %}, <em>{{ item.date }}</em>{% endif %}
+                                        <span style="font-size: 1.2rem; font-weight: 600;">{{ item.name }}</span><br/>
+                                        <span style="font-size: 1.05rem;">{{ item.position }}</span>{% if item.date %}, <em style="font-size: 1rem;">{{ item.date }}</em>{% endif %}
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -25,16 +26,17 @@
 
                     {% if site.data.profile.education %}
                     <div class="col-12">
-                        <div class="mx-2 my-1">
-                            <h6>Education</h6>
+                        <div class="mx-2 my-2">
+                            <h4 class="mb-4">Education</h4>
                             <div>
                                 {% for item in site.data.profile.education %}
-                                <div class="mb-2 d-flex align-items-center">
+                                <div class="mb-4 d-flex align-items-center" style="min-height: 48px;">
                                     {% if item.logo %}
-                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" style="width: 20px; height: 20px; object-fit: contain; margin-right: 8px;">
+                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" style="width: 40px; height: 40px; object-fit: contain; margin-right: 16px;">
                                     {% endif %}
                                     <div>
-                                        <strong>{{ item.name }}</strong>, {{ item.position }}{% if item.date %}, <em>{{ item.date }}</em>{% endif %}
+                                        <span style="font-size: 1.2rem; font-weight: 600;">{{ item.name }}</span><br/>
+                                        <span style="font-size: 1.05rem;">{{ item.position }}</span>{% if item.date %}, <em style="font-size: 1rem;">{{ item.date }}</em>{% endif %}
                                     </div>
                                 </div>
                                 {% endfor %}
@@ -45,13 +47,13 @@
 
                     {% if site.data.profile.awards %}
                     <div class="col-12">
-                        <div class="mx-2 my-1">
-                            <h6>Honors & Awards</h6>
+                        <div class="mx-2 my-2">
+                            <h4 class="mb-4">Honors & Awards</h4>
                             <div>
                                 {% for item in site.data.profile.awards %}
-                                <div class="d-flex mb-1">
-                                    <div>{{ item.name }}</div>
-                                    <div class="ml-auto mt-auto no-break"><em>{{ item.date }}</em></div>
+                                <div class="d-flex mb-3" style="min-height: 32px;">
+                                    <div style="font-size: 1.05rem;">{{ item.name }}</div>
+                                    <div class="ml-auto mt-auto no-break" style="font-size: 1rem;"><em>{{ item.date }}</em></div>
                                 </div>
                                 {% endfor %}
                             </div>
