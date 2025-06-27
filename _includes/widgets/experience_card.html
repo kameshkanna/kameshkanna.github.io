@@ -9,8 +9,13 @@
                             <h6>Experience</h6>
                             <div>
                                 {% for item in site.data.profile.experience %}
-                                <div class="mb-2">
-                                    <strong>{{ item.name }}</strong>, {{ item.position }}{% if item.date %}, <em>{{ item.date }}</em>{% endif %}
+                                <div class="mb-2 d-flex align-items-center">
+                                    {% if item.logo %}
+                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" style="width: 20px; height: 20px; object-fit: contain; margin-right: 8px;">
+                                    {% endif %}
+                                    <div>
+                                        <strong>{{ item.name }}</strong>, {{ item.position }}{% if item.date %}, <em>{{ item.date }}</em>{% endif %}
+                                    </div>
                                 </div>
                                 {% endfor %}
                             </div>
@@ -24,8 +29,13 @@
                             <h6>Education</h6>
                             <div>
                                 {% for item in site.data.profile.education %}
-                                <div class="mb-2">
-                                    <strong>{{ item.name }}</strong>, {{ item.position }}{% if item.date %}, <em>{{ item.date }}</em>{% endif %}
+                                <div class="mb-2 d-flex align-items-center">
+                                    {% if item.logo %}
+                                    <img src="{{ item.logo | relative_url }}" alt="{{ item.name }}" style="width: 20px; height: 20px; object-fit: contain; margin-right: 8px;">
+                                    {% endif %}
+                                    <div>
+                                        <strong>{{ item.name }}</strong>, {{ item.position }}{% if item.date %}, <em>{{ item.date }}</em>{% endif %}
+                                    </div>
                                 </div>
                                 {% endfor %}
                             </div>
