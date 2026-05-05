@@ -2,79 +2,67 @@
 import Layout from "@/layouts/Layout.astro";
 import { profile } from "@/data/profile";
 import { publications } from "@/data/publications";
-
-const allPubs = publications;
 ---
 
 <Layout title="Kamesh R" description="ML researcher working on AI safety and interpretability.">
 
-  <!-- Hero: bio left, photo right -->
-  <div style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 1.75rem;">
-    <div style="flex: 1;">
-      <h1 style="margin: 0 0 0.25rem;">Kamesh R</h1>
-      <p style="color: #555; font-size: 0.875rem; margin: 0 0 1rem;">
-        ML Intern at Glance &nbsp;·&nbsp; MSc ML at UCL, starting Aug 2026
+  <!-- ── Hero ── -->
+  <div style="display:flex; gap:1.75rem; align-items:flex-start; margin-bottom:1.5rem;">
+    <div style="flex:1; min-width:0;">
+      <h1>Kamesh R</h1>
+      <p class="meta" style="margin:0.4rem 0 1rem;">
+        ML Intern, <a href="https://glance.com" target="_blank" rel="noopener" class="no-underline" style="color:#444;">Glance</a>
+        &ensp;·&ensp;
+        MSc Machine Learning, UCL (Aug 2026)
       </p>
-      <p style="font-size: 0.875rem; line-height: 1.6; color: #333; margin: 0;">
-        <a href={`mailto:${profile.email}`}>Email</a>
-        &nbsp;/&nbsp;
-        <a href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
-        &nbsp;/&nbsp;
-        <a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-        &nbsp;/&nbsp;
-        <a href={profile.links.scholar} target="_blank" rel="noopener">Scholar</a>
-        &nbsp;/&nbsp;
-        <a href={profile.links.twitter} target="_blank" rel="noopener">Twitter</a>
-        &nbsp;/&nbsp;
-        <a href={profile.links.cv} target="_blank">CV</a>
+      <p style="font-size:0.875rem; line-height:1.8; margin:0; display:flex; flex-wrap:wrap; gap:0.1rem 0;">
+        <a href={`mailto:${profile.email}`}>Email</a>&ensp;/&ensp;<a
+          href={profile.links.github} target="_blank" rel="noopener">GitHub</a>&ensp;/&ensp;<a
+          href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>&ensp;/&ensp;<a
+          href={profile.links.scholar} target="_blank" rel="noopener">Scholar</a>&ensp;/&ensp;<a
+          href={profile.links.twitter} target="_blank" rel="noopener">Twitter</a>&ensp;/&ensp;<a
+          href={profile.links.cv} target="_blank">CV</a>
       </p>
     </div>
     <img
       src="/images/profile.jpg"
       alt="Kamesh R"
-      style="width: 110px; height: 110px; object-fit: cover; border-radius: 6px; flex-shrink: 0;"
+      style="width:108px; height:108px; object-fit:cover; border-radius:5px; flex-shrink:0;"
     />
   </div>
 
-  <!-- Bio -->
-  <div style="margin-bottom: 0.5rem;">
-    {profile.bio.map((para) => <p style="margin: 0 0 0.9rem; color: #222;">{para}</p>)}
+  <!-- ── Bio ── -->
+  <div style="display:flex; flex-direction:column; gap:0.8rem;">
+    {profile.bio.map((para) => <p style="margin:0;">{para}</p>)}
   </div>
 
-  <!-- Publications -->
+  <!-- ── Publications ── -->
   <h2>Publications</h2>
-  <div>
-    {allPubs.map((pub) => (
-      <div style="margin-bottom: 1.1rem;">
-        <p style="margin: 0 0 0.15rem; font-weight: 500; color: #000; line-height: 1.4;">
-          {pub.links?.arxiv ? (
-            <a href={pub.links.arxiv} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">
-              {pub.title}
-            </a>
-          ) : pub.links?.paper ? (
-            <a href={pub.links.paper} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">
-              {pub.title}
-            </a>
-          ) : (
-            pub.title
-          )}
-        </p>
-        <p style="margin: 0; font-size: 0.875rem; color: #555;">
-          {pub.authors} &nbsp;·&nbsp; <em>{pub.venue}</em>
-          {pub.links?.poster && (
-            <> &nbsp;[<a href={pub.links.poster} target="_blank" rel="noopener" style="text-decoration: none;">poster</a>]</>
-          )}
+
+  <div style="display:flex; flex-direction:column; gap:1rem;">
+    {publications.map((pub) => (
+      <div>
+        <h3>
+          {pub.links?.arxiv
+            ? <a href={pub.links.arxiv} target="_blank" rel="noopener">{pub.title}</a>
+            : pub.links?.paper
+            ? <a href={pub.links.paper} target="_blank" rel="noopener">{pub.title}</a>
+            : pub.title}
+        </h3>
+        <p class="meta" style="margin:0;">
+          {pub.authors}&ensp;·&ensp;<em>{pub.venue}</em>
+          {pub.links?.poster && <>&ensp;[<a href={pub.links.poster} target="_blank" rel="noopener">poster</a>]</>}
         </p>
       </div>
     ))}
   </div>
 
-  <!-- Footer links -->
-  <p style="margin-top: 2rem; font-size: 0.875rem; color: #777; border-top: 1px solid #eee; padding-top: 1.25rem;">
+  <!-- ── Footer nav ── -->
+  <p class="meta" style="margin-top:2.5rem; padding-top:1.25rem; border-top:1px solid #eee;">
     <a href="/projects">Projects &amp; experience</a>
-    &nbsp;·&nbsp;
-    <a href="/cv.pdf" target="_blank">CV (PDF)</a>
-    &nbsp;·&nbsp;
+    &ensp;·&ensp;
+    <a href="/publications">All publications</a>
+    &ensp;·&ensp;
     <a href="/writing">Writing</a>
   </p>
 

@@ -6,90 +6,106 @@ import { talks } from "@/data/talks";
 ---
 
 <Layout title="Projects — Kamesh R" description="Projects, experience, talks, and more.">
-  <h1 style="margin-bottom: 0.25rem;">Projects &amp; Experience</h1>
-  <p style="color: #555; font-size: 0.875rem; margin-top: 0;">
-    <a href="/cv.pdf" target="_blank">Full CV (PDF)</a>
+
+  <h1>Projects &amp; Experience</h1>
+  <p class="meta" style="margin:0.4rem 0 0;">
+    <a href="/cv.pdf" target="_blank">Download CV (PDF)</a>
   </p>
 
-  <!-- Research Projects -->
+  <!-- ── Research Projects ── -->
   <h2>Research Projects</h2>
-  {projects.map((project) => (
-    <div style="margin-bottom: 1.5rem;">
-      <p style="margin: 0 0 0.2rem; font-weight: 500; color: #000;">{project.title}</p>
-      <p style="margin: 0 0 0.3rem; font-size: 0.875rem; color: #444;">{project.description}</p>
-      {project.bullets.map((b) => (
-        <p style="margin: 0 0 0.2rem; font-size: 0.875rem; color: #555; padding-left: 1rem;">{b}</p>
-      ))}
-      {(project.links?.github || project.links?.paper) && (
-        <p style="margin: 0.3rem 0 0; font-size: 0.875rem;">
-          {project.links?.github && <a href={project.links.github} target="_blank" rel="noopener">GitHub</a>}
-          {project.links?.github && project.links?.paper && <span style="color: #888;"> &nbsp;/&nbsp; </span>}
-          {project.links?.paper && <a href={project.links.paper} target="_blank" rel="noopener">Paper</a>}
-        </p>
-      )}
-    </div>
-  ))}
+  <div style="display:flex; flex-direction:column; gap:1.25rem;">
+    {projects.map((project) => (
+      <div>
+        <h3>{project.title}</h3>
+        <p style="margin:0.2rem 0 0.4rem; font-size:0.9375rem; color:#333;">{project.description}</p>
+        <div style="display:flex; flex-direction:column; gap:0.2rem;">
+          {project.bullets.map((b) => (
+            <p class="meta" style="margin:0; padding-left:1rem; border-left:2px solid #e8e8e8;">{b}</p>
+          ))}
+        </div>
+        {(project.links?.github || project.links?.paper) && (
+          <p style="margin:0.4rem 0 0; font-size:0.875rem;">
+            {project.links?.github && <a href={project.links.github} target="_blank" rel="noopener">GitHub</a>}
+            {project.links?.github && project.links?.paper && <>&ensp;/&ensp;</>}
+            {project.links?.paper && <a href={project.links.paper} target="_blank" rel="noopener">Paper</a>}
+          </p>
+        )}
+      </div>
+    ))}
+  </div>
 
-  <!-- Education -->
+  <!-- ── Education ── -->
   <h2>Education</h2>
-  {education.map((ed) => (
-    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.25rem;">
-      <div>
-        <span style="font-weight: 500; color: #000;">
-          {ed.institution}
-          {ed.upcoming && <span style="font-weight: 400; color: #888; font-size: 0.8rem;"> (upcoming)</span>}
-        </span>
-        <span style="color: #555; font-size: 0.875rem;"> — {ed.degree}</span>
+  <div style="display:flex; flex-direction:column; gap:0.75rem;">
+    {education.map((ed) => (
+      <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
+        <div>
+          <span style="font-weight:600; font-size:0.9375rem; color:#000;">
+            {ed.institution}
+            {ed.upcoming && <span style="font-weight:400; font-size:0.8125rem; color:#888;"> (upcoming)</span>}
+          </span>
+          <span class="meta">&ensp;—&ensp;{ed.degree}</span>
+        </div>
+        <span class="meta" style="white-space:nowrap;">{ed.period}</span>
       </div>
-      <span style="color: #888; font-size: 0.875rem; white-space: nowrap;">{ed.period}</span>
-    </div>
-  ))}
+    ))}
+  </div>
 
-  <!-- Experience -->
+  <!-- ── Experience ── -->
   <h2>Experience</h2>
-  {experience.map((entry) => (
-    <div style="margin-bottom: 1.25rem;">
-      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.3rem;">
-        <p style="margin: 0; font-weight: 500; color: #000;">
-          {entry.role}, <span style="font-weight: 400;">{entry.org}</span>
-        </p>
-        <span style="color: #888; font-size: 0.875rem; white-space: nowrap;">{entry.period}</span>
-      </div>
-      {entry.bullets.map((b) => (
-        <p style="margin: 0 0 0.2rem; font-size: 0.875rem; color: #555;">{b}</p>
-      ))}
-    </div>
-  ))}
-
-  <!-- Talks -->
-  <h2>Talks &amp; Seminars</h2>
-  {talks.map((talk) => (
-    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.25rem;">
+  <div style="display:flex; flex-direction:column; gap:1.25rem;">
+    {experience.map((entry) => (
       <div>
-        <span style="color: #111;">{talk.title}</span>
-        <span style="color: #666; font-size: 0.875rem;"> &nbsp;·&nbsp; {talk.venue}</span>
+        <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem; margin-bottom:0.35rem;">
+          <h3 style="margin:0;">
+            {entry.role}<span style="font-weight:400; color:#444;">,&ensp;{entry.org}</span>
+          </h3>
+          <span class="meta" style="white-space:nowrap;">{entry.period}</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:0.2rem;">
+          {entry.bullets.map((b) => (
+            <p class="meta" style="margin:0;">{b}</p>
+          ))}
+        </div>
       </div>
-      <span style="color: #888; font-size: 0.875rem; white-space: nowrap;">{talk.year}</span>
-    </div>
-  ))}
+    ))}
+  </div>
 
-  <!-- Grants -->
+  <!-- ── Talks ── -->
+  <h2>Talks &amp; Seminars</h2>
+  <div style="display:flex; flex-direction:column; gap:0.6rem;">
+    {talks.map((talk) => (
+      <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
+        <div>
+          <span style="font-size:0.9375rem; color:#111;">{talk.title}</span>
+          <span class="meta">&ensp;·&ensp;{talk.venue}</span>
+        </div>
+        <span class="meta" style="white-space:nowrap;">{talk.year}</span>
+      </div>
+    ))}
+  </div>
+
+  <!-- ── Grants ── -->
   <h2>Grants</h2>
-  {grants.map((grant) => (
-    <div style="margin-bottom: 1rem;">
-      <p style="margin: 0 0 0.2rem;">
-        <span style="font-weight: 500; color: #000;">{grant.title}</span>
-        <span style="color: #666; font-size: 0.875rem;"> ({grant.amount})</span>
-      </p>
-      <p style="margin: 0; font-size: 0.875rem; color: #555;">{grant.description}</p>
-    </div>
-  ))}
+  <div style="display:flex; flex-direction:column; gap:0.75rem;">
+    {grants.map((grant) => (
+      <div>
+        <p style="margin:0 0 0.2rem;">
+          <span style="font-weight:600; font-size:0.9375rem;">{grant.title}</span>
+          <span class="meta">&ensp;({grant.amount})</span>
+        </p>
+        <p class="meta" style="margin:0;">{grant.description}</p>
+      </div>
+    ))}
+  </div>
 
-  <!-- Service -->
+  <!-- ── Service ── -->
   <h2>Service</h2>
-  {service.map((s) => (
-    <p style="margin: 0 0 0.4rem; font-size: 0.875rem; color: #444;">
-      {s.role} — {s.venue}
-    </p>
-  ))}
+  <div style="display:flex; flex-direction:column; gap:0.4rem;">
+    {service.map((s) => (
+      <p class="meta" style="margin:0;">{s.role}&ensp;—&ensp;{s.venue}</p>
+    ))}
+  </div>
+
 </Layout>
