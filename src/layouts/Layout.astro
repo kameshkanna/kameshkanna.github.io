@@ -5,9 +5,10 @@ import "../styles/global.css";
 interface Props {
   title: string;
   description?: string;
+  showNav?: boolean;
 }
 
-const { title, description = "Kamesh R — ML researcher" } = Astro.props;
+const { title, description = "Kamesh R — ML researcher", showNav = true } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
@@ -27,7 +28,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
   </head>
   <body>
-    <NavBar />
+    {showNav && <NavBar />}
     <main style="max-width: 680px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem;">
       <slot />
     </main>
