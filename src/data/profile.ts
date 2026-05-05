@@ -12,7 +12,7 @@ export const profile = {
     twitter: "https://twitter.com/edkamesh",
     scholar: "https://scholar.google.co.in/citations?user=9TREU28AAAAJ",
     linkedin: "https://www.linkedin.com/in/kamesh-r/",
-    lesswrong: "YOUR_LESSWRONG_URL",
+    lesswrong: "https://www.lesswrong.com/users/kamesh-r",
     cv: "/cv.pdf",
   },
 } as const;
