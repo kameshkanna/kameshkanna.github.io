@@ -1,0 +1,134 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ExperienceItem from "@/components/ExperienceItem.astro";
+import PublicationItem from "@/components/PublicationItem.astro";
+import { profile } from "@/data/profile";
+import { publications } from "@/data/publications";
+import { experience, education } from "@/data/experience";
+import { skills } from "@/data/skills";
+
+const selectedPubs = publications.filter((p) => p.selected);
+const recentExperience = experience.slice(0, 3);
+---
+
+<Layout title="Kamesh R" description={profile.bio.split("\n")[0].trim()}>
+  <!-- Hero -->
+  <section class="flex flex-col sm:flex-row gap-8 mb-16">
+    <div class="shrink-0">
+      <img
+        src="/images/profile.jpg"
+        alt="Kamesh R"
+        class="w-28 h-28 rounded-full object-cover ring-2 ring-slate-100"
+      />
+    </div>
+    <div>
+      <h1 class="text-2xl font-bold text-slate-900 mb-0.5">{profile.name}</h1>
+      <p class="text-base text-indigo-600 font-medium mb-4">{profile.tagline}</p>
+      <p class="text-sm text-slate-600 leading-relaxed mb-5 max-w-xl">
+        {profile.bio}
+      </p>
+      <!-- Links -->
+      <div class="flex flex-wrap gap-3 text-sm">
+        <a href={`mailto:${profile.email}`} class="link-accent">Email</a>
+        <a href={profile.links.github} target="_blank" rel="noopener" class="link-accent">GitHub</a>
+        <a href={profile.links.scholar} target="_blank" rel="noopener" class="link-accent">Scholar</a>
+        <a href={profile.links.twitter} target="_blank" rel="noopener" class="link-accent">Twitter</a>
+        {profile.links.linkedin !== "YOUR_LINKEDIN_URL" && (
+          <a href={profile.links.linkedin} target="_blank" rel="noopener" class="link-accent">LinkedIn</a>
+        )}
+        <a
+          href={profile.links.cv}
+          target="_blank"
+          class="inline-flex items-center gap-1 px-3 py-1 bg-indigo-600 text-white text-xs font-medium rounded-md hover:bg-indigo-700 transition-colors"
+        >
+          CV ↓
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Current Focus -->
+  <section class="mb-14">
+    <h2 class="section-heading">Currently Working On</h2>
+    <ul class="space-y-2">
+      {
+        profile.currentFocus.map((item) => (
+          <li class="flex gap-2 text-sm text-slate-700">
+            <span class="text-indigo-400 shrink-0 font-bold">→</span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- Education -->
+  <section class="mb-14">
+    <h2 class="section-heading">Education</h2>
+    {
+      education.map((ed) => (
+        <div class="flex flex-col sm:flex-row sm:justify-between gap-1 py-3 border-b border-slate-100 last:border-0">
+          <div>
+            <p class="font-medium text-slate-900 text-sm">
+              {ed.institution}
+              {ed.upcoming && (
+                <span class="ml-2 badge bg-indigo-50 text-indigo-600">Upcoming</span>
+              )}
+            </p>
+            <p class="text-sm text-slate-500">{ed.degree}</p>
+          </div>
+          <div class="text-sm text-slate-400 sm:text-right shrink-0">
+            <div>{ed.period}</div>
+            <div>{ed.location}</div>
+          </div>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Recent Experience -->
+  <section class="mb-14">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="section-heading mb-0">Experience</h2>
+      <a href="/projects" class="text-xs text-slate-400 hover:text-indigo-600 transition-colors">
+        See projects →
+      </a>
+    </div>
+    {recentExperience.map((entry) => <ExperienceItem entry={entry} />)}
+    {experience.length > 3 && (
+      <p class="text-sm text-slate-400 pt-4">
+        + {experience.length - 3} more roles — <a href="/cv.pdf" target="_blank" class="link-accent">see full CV</a>
+      </p>
+    )}
+  </section>
+
+  <!-- Selected Publications -->
+  <section class="mb-14">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="section-heading mb-0">Selected Publications</h2>
+      <a href="/publications" class="text-xs text-slate-400 hover:text-indigo-600 transition-colors">
+        All publications →
+      </a>
+    </div>
+    {selectedPubs.map((pub) => <PublicationItem pub={pub} />)}
+  </section>
+
+  <!-- Skills -->
+  <section>
+    <h2 class="section-heading">Technical Skills</h2>
+    <div class="space-y-4">
+      {
+        skills.map((group) => (
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-4">
+            <p class="text-xs font-medium text-slate-400 w-36 shrink-0 pt-0.5">{group.label}</p>
+            <div class="flex flex-wrap gap-1.5">
+              {group.items.map((item) => (
+                <span class="badge bg-slate-100 text-slate-700">{item}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

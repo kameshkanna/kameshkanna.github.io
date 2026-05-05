@@ -1,0 +1,42 @@
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-slate-800;
+  }
+
+  ::selection {
+    @apply bg-indigo-100 text-indigo-900;
+  }
+}
+
+@layer components {
+  .prose-custom {
+    @apply text-slate-700 leading-relaxed;
+  }
+
+  .link-accent {
+    @apply text-indigo-600 hover:text-indigo-800 transition-colors underline-offset-2;
+  }
+
+  .badge {
+    @apply inline-block text-xs font-medium px-2.5 py-0.5 rounded-full;
+  }
+
+  .section-heading {
+    @apply text-sm font-semibold uppercase tracking-widest text-slate-400 mb-6;
+  }
+}

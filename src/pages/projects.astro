@@ -1,0 +1,92 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import ExperienceItem from "@/components/ExperienceItem.astro";
+import { projects, grants, service } from "@/data/projects";
+import { experience } from "@/data/experience";
+import { talks } from "@/data/talks";
+
+const talkTypeLabel: Record<string, string> = {
+  presentation: "Presentation",
+  workshop: "Workshop",
+  lecture: "Lecture",
+  panel: "Panelist",
+  talk: "Talk",
+};
+---
+
+<Layout
+  title="Projects — Kamesh R"
+  description="Research projects, talks, grants, and service by Kamesh R."
+>
+  <header class="mb-12">
+    <h1 class="text-2xl font-bold text-slate-900 mb-2">Projects & More</h1>
+    <p class="text-sm text-slate-500">Research projects, talks, grants, and community service.</p>
+  </header>
+
+  <!-- Projects -->
+  <section class="mb-14">
+    <h2 class="section-heading">Research Projects</h2>
+    {projects.map((project) => <ProjectCard project={project} />)}
+  </section>
+
+  <!-- Full Experience -->
+  <section class="mb-14">
+    <h2 class="section-heading">Full Experience</h2>
+    {experience.map((entry) => <ExperienceItem entry={entry} />)}
+  </section>
+
+  <!-- Talks -->
+  <section class="mb-14">
+    <h2 class="section-heading">Talks & Seminars</h2>
+    <div class="space-y-0">
+      {
+        talks.map((talk) => (
+          <div class="py-4 border-b border-slate-100 last:border-0 flex flex-col sm:flex-row sm:justify-between gap-1">
+            <div>
+              <p class="font-medium text-sm text-slate-900">{talk.title}</p>
+              <p class="text-sm text-slate-500">{talk.venue}</p>
+            </div>
+            <div class="text-sm text-slate-400 sm:text-right shrink-0">
+              <div>{talk.year}</div>
+              <div>
+                <span class="badge bg-slate-100 text-slate-500">{talkTypeLabel[talk.type]}</span>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Grants -->
+  <section class="mb-14">
+    <h2 class="section-heading">Grants</h2>
+    {
+      grants.map((grant) => (
+        <div class="py-4 border-b border-slate-100 last:border-0">
+          <div class="flex flex-col sm:flex-row sm:justify-between gap-1 mb-1">
+            <p class="font-medium text-sm text-slate-900">{grant.title}</p>
+            <span class="badge bg-green-50 text-green-700 self-start">{grant.amount}</span>
+          </div>
+          <p class="text-sm text-slate-600">{grant.description}</p>
+        </div>
+      ))
+    }
+  </section>
+
+  <!-- Service -->
+  <section>
+    <h2 class="section-heading">Academic Service</h2>
+    <div class="space-y-0">
+      {
+        service.map((s) => (
+          <div class="py-3 border-b border-slate-100 last:border-0 flex gap-3 text-sm">
+            <span class="badge bg-slate-100 text-slate-600 self-start">{s.role}</span>
+            <span class="text-slate-700">{s.venue}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,41 @@
+---
+import type { Project } from "@/data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="py-5 border-b border-slate-100 last:border-0">
+  <p class="font-semibold text-slate-900 mb-1">{project.title}</p>
+  <p class="text-sm text-slate-600 mb-3">{project.description}</p>
+  <ul class="space-y-1 mb-3">
+    {project.bullets.map((b) => (
+      <li class="text-sm text-slate-600 flex gap-2">
+        <span class="text-slate-300 shrink-0 mt-0.5">—</span>
+        <span>{b}</span>
+      </li>
+    ))}
+  </ul>
+  <div class="flex flex-wrap gap-1.5">
+    {project.tags.map((tag) => (
+      <span class="badge bg-slate-100 text-slate-600">{tag}</span>
+    ))}
+  </div>
+  {(project.links?.github || project.links?.paper) && (
+    <div class="flex gap-3 mt-3">
+      {project.links?.github && (
+        <a href={project.links.github} target="_blank" rel="noopener" class="text-sm link-accent">
+          GitHub ↗
+        </a>
+      )}
+      {project.links?.paper && (
+        <a href={project.links.paper} target="_blank" rel="noopener" class="text-sm link-accent">
+          Paper ↗
+        </a>
+      )}
+    </div>
+  )}
+</article>
