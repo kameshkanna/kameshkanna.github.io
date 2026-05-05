@@ -9,29 +9,45 @@
 @layer base {
   html {
     font-family: "Inter", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
   body {
-    @apply bg-white text-slate-800;
-    line-height: 1.75;
+    background: #fff;
+    color: #111;
   }
 
   a {
-    @apply text-blue-700 underline underline-offset-2 hover:text-blue-900;
+    color: #111;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-decoration-thickness: 1px;
+  }
+
+  a:hover {
+    color: #000;
+    text-decoration: none;
   }
 
   ::selection {
-    @apply bg-blue-100;
-  }
-}
-
-@layer components {
-  .section-title {
-    @apply font-semibold text-slate-900 text-base mt-10 mb-3 border-b border-slate-200 pb-1;
+    background: #e8e8e8;
   }
 
-  .plain-link {
-    @apply text-blue-700 underline underline-offset-2 hover:text-blue-900;
+  h1 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #000;
+  }
+
+  h2 {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
   }
 }

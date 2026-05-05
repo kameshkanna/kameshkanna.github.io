@@ -1,94 +1,95 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import { projects, grants, service } from "@/data/projects";
-import { experience } from "@/data/experience";
+import { experience, education } from "@/data/experience";
 import { talks } from "@/data/talks";
 ---
 
-<Layout title="Projects — Kamesh R" description="Research projects, talks, and more.">
-  <h1 class="text-xl font-semibold text-slate-900 mb-8">Projects</h1>
+<Layout title="Projects — Kamesh R" description="Projects, experience, talks, and more.">
+  <h1 style="margin-bottom: 0.25rem;">Projects &amp; Experience</h1>
+  <p style="color: #555; font-size: 0.875rem; margin-top: 0;">
+    <a href="/cv.pdf" target="_blank">Full CV (PDF)</a>
+  </p>
 
   <!-- Research Projects -->
-  <section>
-    <h2 class="section-title">Research Projects</h2>
-    {
-      projects.map((project) => (
-        <div class="mb-6">
-          <p class="font-medium text-slate-900 text-[15px] mb-0.5">{project.title}</p>
-          <p class="text-sm text-slate-600 mb-2">{project.description}</p>
-          <p class="text-sm text-slate-600">{project.bullets[0]}</p>
-          {(project.links?.github || project.links?.paper) && (
-            <p class="text-sm mt-1.5 flex gap-3">
-              {project.links?.github && <a href={project.links.github} target="_blank" rel="noopener">GitHub</a>}
-              {project.links?.paper && <a href={project.links.paper} target="_blank" rel="noopener">Paper</a>}
-            </p>
-          )}
-        </div>
-      ))
-    }
-  </section>
+  <h2>Research Projects</h2>
+  {projects.map((project) => (
+    <div style="margin-bottom: 1.5rem;">
+      <p style="margin: 0 0 0.2rem; font-weight: 500; color: #000;">{project.title}</p>
+      <p style="margin: 0 0 0.3rem; font-size: 0.875rem; color: #444;">{project.description}</p>
+      {project.bullets.map((b) => (
+        <p style="margin: 0 0 0.2rem; font-size: 0.875rem; color: #555; padding-left: 1rem;">{b}</p>
+      ))}
+      {(project.links?.github || project.links?.paper) && (
+        <p style="margin: 0.3rem 0 0; font-size: 0.875rem;">
+          {project.links?.github && <a href={project.links.github} target="_blank" rel="noopener">GitHub</a>}
+          {project.links?.github && project.links?.paper && <span style="color: #888;"> &nbsp;/&nbsp; </span>}
+          {project.links?.paper && <a href={project.links.paper} target="_blank" rel="noopener">Paper</a>}
+        </p>
+      )}
+    </div>
+  ))}
 
-  <!-- Full Experience -->
-  <section>
-    <h2 class="section-title">Experience</h2>
-    {
-      experience.map((entry) => (
-        <div class="mb-4">
-          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 mb-0.5">
-            <p class="text-[15px] font-medium text-slate-900">
-              {entry.role}, <span class="font-normal text-slate-700">{entry.org}</span>
-            </p>
-            <p class="text-sm text-slate-400 shrink-0">{entry.period}</p>
-          </div>
-          <ul class="list-none m-0 p-0 space-y-0.5">
-            {entry.bullets.map((b) => (
-              <li class="text-sm text-slate-600">{b}</li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
-  </section>
+  <!-- Education -->
+  <h2>Education</h2>
+  {education.map((ed) => (
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.25rem;">
+      <div>
+        <span style="font-weight: 500; color: #000;">
+          {ed.institution}
+          {ed.upcoming && <span style="font-weight: 400; color: #888; font-size: 0.8rem;"> (upcoming)</span>}
+        </span>
+        <span style="color: #555; font-size: 0.875rem;"> — {ed.degree}</span>
+      </div>
+      <span style="color: #888; font-size: 0.875rem; white-space: nowrap;">{ed.period}</span>
+    </div>
+  ))}
+
+  <!-- Experience -->
+  <h2>Experience</h2>
+  {experience.map((entry) => (
+    <div style="margin-bottom: 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.25rem; margin-bottom: 0.3rem;">
+        <p style="margin: 0; font-weight: 500; color: #000;">
+          {entry.role}, <span style="font-weight: 400;">{entry.org}</span>
+        </p>
+        <span style="color: #888; font-size: 0.875rem; white-space: nowrap;">{entry.period}</span>
+      </div>
+      {entry.bullets.map((b) => (
+        <p style="margin: 0 0 0.2rem; font-size: 0.875rem; color: #555;">{b}</p>
+      ))}
+    </div>
+  ))}
 
   <!-- Talks -->
-  <section>
-    <h2 class="section-title">Talks & Seminars</h2>
-    <ul class="list-none m-0 p-0">
-      {
-        talks.map((talk) => (
-          <li class="mb-3">
-            <p class="text-[15px] text-slate-900">{talk.title}</p>
-            <p class="text-sm text-slate-500">{talk.venue}, {talk.year}</p>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+  <h2>Talks &amp; Seminars</h2>
+  {talks.map((talk) => (
+    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.25rem;">
+      <div>
+        <span style="color: #111;">{talk.title}</span>
+        <span style="color: #666; font-size: 0.875rem;"> &nbsp;·&nbsp; {talk.venue}</span>
+      </div>
+      <span style="color: #888; font-size: 0.875rem; white-space: nowrap;">{talk.year}</span>
+    </div>
+  ))}
 
   <!-- Grants -->
-  <section>
-    <h2 class="section-title">Grants</h2>
-    {
-      grants.map((grant) => (
-        <div class="mb-4">
-          <p class="font-medium text-[15px] text-slate-900">{grant.title} <span class="font-normal text-slate-500">({grant.amount})</span></p>
-          <p class="text-sm text-slate-600">{grant.description}</p>
-        </div>
-      ))
-    }
-  </section>
+  <h2>Grants</h2>
+  {grants.map((grant) => (
+    <div style="margin-bottom: 1rem;">
+      <p style="margin: 0 0 0.2rem;">
+        <span style="font-weight: 500; color: #000;">{grant.title}</span>
+        <span style="color: #666; font-size: 0.875rem;"> ({grant.amount})</span>
+      </p>
+      <p style="margin: 0; font-size: 0.875rem; color: #555;">{grant.description}</p>
+    </div>
+  ))}
 
   <!-- Service -->
-  <section>
-    <h2 class="section-title">Service</h2>
-    <ul class="list-none m-0 p-0">
-      {
-        service.map((s) => (
-          <li class="text-sm text-slate-600 mb-1.5">
-            {s.role} — {s.venue}
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+  <h2>Service</h2>
+  {service.map((s) => (
+    <p style="margin: 0 0 0.4rem; font-size: 0.875rem; color: #444;">
+      {s.role} — {s.venue}
+    </p>
+  ))}
 </Layout>

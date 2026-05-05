@@ -8,20 +8,17 @@ interface Props {
 const { pub } = Astro.props;
 ---
 
-<li class="mb-4">
-  <p class="text-slate-900">
+<div style="margin-bottom: 1.1rem;">
+  <p style="margin: 0 0 0.15rem; font-weight: 500; color: #000; line-height: 1.4;">
     {pub.links?.arxiv ? (
-      <a href={pub.links.arxiv} target="_blank" rel="noopener">{pub.title}</a>
+      <a href={pub.links.arxiv} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">{pub.title}</a>
     ) : pub.links?.paper ? (
-      <a href={pub.links.paper} target="_blank" rel="noopener">{pub.title}</a>
+      <a href={pub.links.paper} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">{pub.title}</a>
     ) : (
-      <span class="font-medium">{pub.title}</span>
+      pub.title
     )}
   </p>
-  <p class="text-sm text-slate-600">
-    {pub.authors} · <em>{pub.venue}</em>
-    {pub.links?.poster && (
-      <> · <a href={pub.links.poster} target="_blank" rel="noopener" class="text-sm">poster</a></>
-    )}
+  <p style="margin: 0; font-size: 0.875rem; color: #555;">
+    {pub.authors} &nbsp;·&nbsp; <em>{pub.venue}</em>
   </p>
-</li>
+</div>

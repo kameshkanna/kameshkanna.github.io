@@ -9,24 +9,61 @@ const navLinks = [
 const currentPath = Astro.url.pathname;
 ---
 
-<header class="border-b border-slate-200">
-  <nav class="max-w-2xl mx-auto px-5 h-12 flex items-center justify-between">
-    <a href="/" class="font-semibold text-slate-900 no-underline hover:text-slate-600 transition-colors">
-      Kamesh R
-    </a>
-    <ul class="flex items-center gap-4 list-none m-0 p-0">
+<style>
+  header {
+    border-bottom: 1px solid #e8e8e8;
+  }
+  nav {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+  }
+  .site-name {
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+  }
+  .site-name:hover {
+    text-decoration: none;
+    color: #444;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+  }
+  a.nav-link {
+    color: #666;
+    text-decoration: none;
+    font-size: 0.875rem;
+  }
+  a.nav-link:hover {
+    color: #000;
+    text-decoration: none;
+  }
+  a.nav-link.active {
+    color: #000;
+    font-weight: 500;
+  }
+</style>
+
+<header>
+  <nav>
+    <a href="/" class="site-name">Kamesh R</a>
+    <ul>
       {
         navLinks.map(({ href, label }) => {
           const isActive = href === "/" ? currentPath === "/" : currentPath.startsWith(href);
           return (
             <li>
-              <a
-                href={href}
-                class:list={[
-                  "text-sm no-underline transition-colors",
-                  isActive ? "text-slate-900 font-medium" : "text-slate-500 hover:text-slate-900",
-                ]}
-              >
+              <a href={href} class:list={["nav-link", { active: isActive }]}>
                 {label}
               </a>
             </li>

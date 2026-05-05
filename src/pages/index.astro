@@ -1,98 +1,81 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PublicationItem from "@/components/PublicationItem.astro";
 import { profile } from "@/data/profile";
 import { publications } from "@/data/publications";
-import { experience, education } from "@/data/experience";
-import { skills } from "@/data/skills";
 
-const selectedPubs = publications.filter((p) => p.selected);
+const allPubs = publications;
 ---
 
 <Layout title="Kamesh R" description="ML researcher working on AI safety and interpretability.">
-  <!-- Hero -->
-  <section class="flex gap-6 items-start mb-8">
+
+  <!-- Hero: bio left, photo right -->
+  <div style="display: flex; gap: 2rem; align-items: flex-start; margin-bottom: 1.75rem;">
+    <div style="flex: 1;">
+      <h1 style="margin: 0 0 0.25rem;">Kamesh R</h1>
+      <p style="color: #555; font-size: 0.875rem; margin: 0 0 1rem;">
+        ML Intern at Glance &nbsp;·&nbsp; MSc ML at UCL, starting Aug 2026
+      </p>
+      <p style="font-size: 0.875rem; line-height: 1.6; color: #333; margin: 0;">
+        <a href={`mailto:${profile.email}`}>Email</a>
+        &nbsp;/&nbsp;
+        <a href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
+        &nbsp;/&nbsp;
+        <a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        &nbsp;/&nbsp;
+        <a href={profile.links.scholar} target="_blank" rel="noopener">Scholar</a>
+        &nbsp;/&nbsp;
+        <a href={profile.links.twitter} target="_blank" rel="noopener">Twitter</a>
+        &nbsp;/&nbsp;
+        <a href={profile.links.cv} target="_blank">CV</a>
+      </p>
+    </div>
     <img
       src="/images/profile.jpg"
       alt="Kamesh R"
-      class="w-20 h-20 rounded-full object-cover shrink-0 mt-1"
+      style="width: 110px; height: 110px; object-fit: cover; border-radius: 6px; flex-shrink: 0;"
     />
-    <div>
-      <h1 class="text-xl font-semibold text-slate-900 mb-0.5">Kamesh R</h1>
-      <p class="text-sm text-slate-500 mb-3">
-        ML Intern at <a href="https://glance.com" target="_blank" rel="noopener" class="no-underline text-slate-500 hover:text-slate-800">Glance</a> ·
-        MSc ML at UCL (Aug 2026)
-      </p>
-      <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-        <a href={`mailto:${profile.email}`}>Email</a>
-        <a href={profile.links.github} target="_blank" rel="noopener">GitHub</a>
-        <a href={profile.links.linkedin} target="_blank" rel="noopener">LinkedIn</a>
-        <a href={profile.links.scholar} target="_blank" rel="noopener">Scholar</a>
-        <a href={profile.links.twitter} target="_blank" rel="noopener">Twitter</a>
-        <a href={profile.links.cv} target="_blank">CV</a>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- Bio -->
-  <section class="mb-2 space-y-3 text-slate-700 text-[15px]">
-    {profile.bio.map((para) => <p>{para}</p>)}
-  </section>
+  <div style="margin-bottom: 0.5rem;">
+    {profile.bio.map((para) => <p style="margin: 0 0 0.9rem; color: #222;">{para}</p>)}
+  </div>
 
   <!-- Publications -->
-  <section>
-    <h2 class="section-title">Publications</h2>
-    <ul class="list-none m-0 p-0">
-      {selectedPubs.map((pub) => <PublicationItem pub={pub} />)}
-    </ul>
-    <p class="text-sm mt-2">
-      <a href="/publications">All publications →</a>
-    </p>
-  </section>
-
-  <!-- Experience -->
-  <section>
-    <h2 class="section-title">Experience</h2>
-    {experience.slice(0, 4).map((entry) => (
-      <div class="mb-4">
-        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 mb-0.5">
-          <p class="text-[15px] font-medium text-slate-900">
-            {entry.role}, <span class="font-normal text-slate-700">{entry.org}</span>
-          </p>
-          <p class="text-sm text-slate-400 shrink-0">{entry.period}</p>
-        </div>
-        <p class="text-sm text-slate-600">{entry.bullets[0]}</p>
+  <h2>Publications</h2>
+  <div>
+    {allPubs.map((pub) => (
+      <div style="margin-bottom: 1.1rem;">
+        <p style="margin: 0 0 0.15rem; font-weight: 500; color: #000; line-height: 1.4;">
+          {pub.links?.arxiv ? (
+            <a href={pub.links.arxiv} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">
+              {pub.title}
+            </a>
+          ) : pub.links?.paper ? (
+            <a href={pub.links.paper} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">
+              {pub.title}
+            </a>
+          ) : (
+            pub.title
+          )}
+        </p>
+        <p style="margin: 0; font-size: 0.875rem; color: #555;">
+          {pub.authors} &nbsp;·&nbsp; <em>{pub.venue}</em>
+          {pub.links?.poster && (
+            <> &nbsp;[<a href={pub.links.poster} target="_blank" rel="noopener" style="text-decoration: none;">poster</a>]</>
+          )}
+        </p>
       </div>
     ))}
-    <p class="text-sm mt-1">
-      <a href="/cv.pdf" target="_blank">Full CV →</a>
-    </p>
-  </section>
+  </div>
 
-  <!-- Education -->
-  <section>
-    <h2 class="section-title">Education</h2>
-    {education.map((ed) => (
-      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-0.5 mb-3">
-        <div>
-          <p class="text-[15px] font-medium text-slate-900">
-            {ed.institution}
-            {ed.upcoming && <span class="text-slate-400 font-normal text-sm"> (upcoming)</span>}
-          </p>
-          <p class="text-sm text-slate-600">{ed.degree}</p>
-        </div>
-        <p class="text-sm text-slate-400 shrink-0">{ed.period}</p>
-      </div>
-    ))}
-  </section>
+  <!-- Footer links -->
+  <p style="margin-top: 2rem; font-size: 0.875rem; color: #777; border-top: 1px solid #eee; padding-top: 1.25rem;">
+    <a href="/projects">Projects &amp; experience</a>
+    &nbsp;·&nbsp;
+    <a href="/cv.pdf" target="_blank">CV (PDF)</a>
+    &nbsp;·&nbsp;
+    <a href="/writing">Writing</a>
+  </p>
 
-  <!-- Skills -->
-  <section>
-    <h2 class="section-title">Skills</h2>
-    <div class="space-y-1 text-sm text-slate-600">
-      {skills.map((group) => (
-        <p><span class="text-slate-400">{group.label}:</span> {group.items.join(", ")}</p>
-      ))}
-    </div>
-  </section>
 </Layout>

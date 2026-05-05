@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import PublicationItem from "@/components/PublicationItem.astro";
 import { publications } from "@/data/publications";
 
 const byYear = publications.reduce<Record<number, typeof publications>>((acc, pub) => {
@@ -9,24 +8,37 @@ const byYear = publications.reduce<Record<number, typeof publications>>((acc, pu
   return acc;
 }, {});
 
-const years = Object.keys(byYear)
-  .map(Number)
-  .sort((a, b) => b - a);
+const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
 ---
 
 <Layout title="Publications — Kamesh R" description="Research publications by Kamesh R.">
-  <h1 class="text-xl font-semibold text-slate-900 mb-8">Publications</h1>
+  <h1 style="margin-bottom: 0.25rem;">Publications</h1>
+  <p style="color: #555; font-size: 0.875rem; margin-top: 0; margin-bottom: 0;">
+    AI safety, reasoning evaluation, multilingual NLP.
+  </p>
 
-  {
-    years.map((year) => (
-      <section class="mb-8">
-        <h2 class="section-title">{year}</h2>
-        <ul class="list-none m-0 p-0">
-          {byYear[year].map((pub) => (
-            <PublicationItem pub={pub} />
-          ))}
-        </ul>
-      </section>
-    ))
-  }
+  {years.map((year) => (
+    <div>
+      <h2>{year}</h2>
+      {byYear[year].map((pub) => (
+        <div style="margin-bottom: 1.25rem;">
+          <p style="margin: 0 0 0.2rem; font-weight: 500; color: #000; line-height: 1.4;">
+            {pub.links?.arxiv ? (
+              <a href={pub.links.arxiv} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">{pub.title}</a>
+            ) : pub.links?.paper ? (
+              <a href={pub.links.paper} target="_blank" rel="noopener" style="font-weight: 500; text-decoration: none; color: #000; border-bottom: 1px solid #bbb;">{pub.title}</a>
+            ) : (
+              pub.title
+            )}
+          </p>
+          <p style="margin: 0; font-size: 0.875rem; color: #555;">
+            {pub.authors} &nbsp;·&nbsp; <em>{pub.venue}</em>
+            {pub.links?.poster && (
+              <> &nbsp;[<a href={pub.links.poster} target="_blank" rel="noopener" style="color: #555; text-decoration: none; border-bottom: 1px solid #ccc;">poster</a>]</>
+            )}
+          </p>
+        </div>
+      ))}
+    </div>
+  ))}
 </Layout>

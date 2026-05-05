@@ -5,23 +5,23 @@ import { profile } from "@/data/profile";
 const hasLessWrong = profile.links.lesswrong !== "YOUR_LESSWRONG_URL";
 ---
 
-<Layout title="Writing — Kamesh R" description="Writing by Kamesh R on AI safety, interpretability, and reasoning.">
-  <h1 class="text-xl font-semibold text-slate-900 mb-8">Writing</h1>
+<Layout title="Writing — Kamesh R" description="Writing by Kamesh R on AI safety and interpretability.">
+  <h1 style="margin-bottom: 1.5rem;">Writing</h1>
 
-  <section class="text-[15px] text-slate-700 space-y-4">
-    <p>
+  <div style="line-height: 1.7; color: #222;">
+    <p style="margin: 0 0 0.9rem;">
       I write occasionally about AI safety, mechanistic interpretability, and reasoning —
       things I'm actively working on or thinking through.
     </p>
     {hasLessWrong ? (
-      <p>
-        Most of my writing is on <a href={profile.links.lesswrong} target="_blank" rel="noopener">LessWrong</a>.
+      <p style="margin: 0;">
+        Most of it is on <a href={profile.links.lesswrong} target="_blank" rel="noopener">LessWrong</a>.
       </p>
     ) : (
-      <p>
-        I plan to start writing on <a href="https://www.lesswrong.com" target="_blank" rel="noopener">LessWrong</a> soon.
-        For now, see my <a href="/publications">publications</a>.
+      <p style="margin: 0;">
+        I plan to start posting on <a href="https://www.lesswrong.com" target="_blank" rel="noopener">LessWrong</a> soon.
+        In the meantime, see my <a href="/publications">publications</a>.
       </p>
     )}
-  </section>
+  </div>
 </Layout>
