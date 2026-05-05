@@ -14,24 +14,18 @@ const years = Object.keys(byYear)
   .sort((a, b) => b - a);
 ---
 
-<Layout
-  title="Publications — Kamesh R"
-  description="Research publications by Kamesh R in AI safety, reasoning, and NLP."
->
-  <header class="mb-12">
-    <h1 class="text-2xl font-bold text-slate-900 mb-2">Publications</h1>
-    <p class="text-sm text-slate-500">
-      Research in AI safety, reasoning evaluation, and multilingual NLP.
-    </p>
-  </header>
+<Layout title="Publications — Kamesh R" description="Research publications by Kamesh R.">
+  <h1 class="text-xl font-semibold text-slate-900 mb-8">Publications</h1>
 
   {
     years.map((year) => (
-      <section class="mb-10">
-        <h2 class="section-heading">{year}</h2>
-        {byYear[year].map((pub) => (
-          <PublicationItem pub={pub} />
-        ))}
+      <section class="mb-8">
+        <h2 class="section-title">{year}</h2>
+        <ul class="list-none m-0 p-0">
+          {byYear[year].map((pub) => (
+            <PublicationItem pub={pub} />
+          ))}
+        </ul>
       </section>
     ))
   }

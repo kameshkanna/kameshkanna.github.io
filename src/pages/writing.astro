@@ -5,51 +5,23 @@ import { profile } from "@/data/profile";
 const hasLessWrong = profile.links.lesswrong !== "YOUR_LESSWRONG_URL";
 ---
 
-<Layout
-  title="Writing — Kamesh R"
-  description="Essays and notes by Kamesh R on AI safety, reasoning, and machine learning."
->
-  <header class="mb-12">
-    <h1 class="text-2xl font-bold text-slate-900 mb-2">Writing</h1>
-    <p class="text-sm text-slate-500">
-      Long-form thoughts on AI safety, interpretability, and reasoning.
-    </p>
-  </header>
+<Layout title="Writing — Kamesh R" description="Writing by Kamesh R on AI safety, interpretability, and reasoning.">
+  <h1 class="text-xl font-semibold text-slate-900 mb-8">Writing</h1>
 
-  <section class="mb-10">
-    <h2 class="section-heading">LessWrong</h2>
-    <div class="py-6 border border-slate-100 rounded-lg px-6">
-      {
-        hasLessWrong ? (
-          <div>
-            <p class="text-sm text-slate-700 mb-4 leading-relaxed">
-              I write on LessWrong about topics at the intersection of AI safety, mechanistic interpretability,
-              and reasoning — including posts on control theory for AI systems, steering vector research,
-              and evaluating reasoning in language models.
-            </p>
-            <a
-              href={profile.links.lesswrong}
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 transition-colors"
-            >
-              Read on LessWrong ↗
-            </a>
-          </div>
-        ) : (
-          <p class="text-sm text-slate-500 italic">
-            Coming soon — I plan to write about AI safety and interpretability on LessWrong.
-          </p>
-        )
-      }
-    </div>
-  </section>
-
-  <section>
-    <h2 class="section-heading">Research Notes</h2>
-    <p class="text-sm text-slate-500 italic">
-      Shorter technical notes will appear here. In the meantime, see my
-      <a href="/publications" class="link-accent">publications</a> for peer-reviewed work.
+  <section class="text-[15px] text-slate-700 space-y-4">
+    <p>
+      I write occasionally about AI safety, mechanistic interpretability, and reasoning —
+      things I'm actively working on or thinking through.
     </p>
+    {hasLessWrong ? (
+      <p>
+        Most of my writing is on <a href={profile.links.lesswrong} target="_blank" rel="noopener">LessWrong</a>.
+      </p>
+    ) : (
+      <p>
+        I plan to start writing on <a href="https://www.lesswrong.com" target="_blank" rel="noopener">LessWrong</a> soon.
+        For now, see my <a href="/publications">publications</a>.
+      </p>
+    )}
   </section>
 </Layout>
