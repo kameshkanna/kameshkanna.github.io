@@ -5,7 +5,7 @@ import { experience, education } from "@/data/experience";
 import { talks } from "@/data/talks";
 ---
 
-<Layout title="Projects — Kamesh R" description="Projects, experience, talks, and more.">
+<Layout title="Projects · Kamesh R" description="Projects, experience, talks, and more.">
 
   <h1 class="reveal">Projects &amp; Experience</h1>
   <p class="meta reveal" style="margin:0.4rem 0 0;">
@@ -19,7 +19,7 @@ import { talks } from "@/data/talks";
       <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
         <div>
           <span style="font-weight:600; font-size:0.9375rem; color:var(--ink);">{ed.institution}</span>
-          <span class="meta">&ensp;—&ensp;{ed.degree}</span>
+          <span class="meta">&ensp;·&ensp;{ed.degree}</span>
         </div>
         <span class="meta" style="white-space:nowrap;">{ed.period}</span>
       </div>
@@ -101,7 +101,7 @@ import { talks } from "@/data/talks";
   <h2 class="reveal">Service</h2>
   <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.4rem;">
     {service.map((s) => (
-      <p class="meta" style="margin:0;">{s.role}&ensp;—&ensp;{s.venue}</p>
+      <p class="meta" style="margin:0;">{s.role}&ensp;·&ensp;{s.venue}</p>
     ))}
   </div>
 

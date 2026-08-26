@@ -45,20 +45,4 @@ export const publications: Publication[] = [
     type: "workshop",
     selected: true,
   },
-  {
-    title: "Exploring Generalization in NLA's",
-    authors: "Kamesh R",
-    venue: "Selected article",
-    year: 2025,
-    type: "preprint",
-    selected: false,
-  },
-  {
-    title: "Calibrating Activation Vectors using Norm",
-    authors: "Kamesh R",
-    venue: "Selected article",
-    year: 2025,
-    type: "preprint",
-    selected: false,
-  },
 ];

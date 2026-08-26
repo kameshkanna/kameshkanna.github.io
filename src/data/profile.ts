@@ -3,8 +3,8 @@ export const profile = {
   email: "kameshrajeshkanna@outlook.com",
   location: "Bengaluru, India",
   bio: [
-    `I'm a machine learning researcher from Chennai. Currently an ML intern at Glance working on catalog retrieval at scale — in August I'm moving to London to start an MSc in Machine Learning at UCL.`,
-    `My research is on AI safety and mechanistic interpretability. I want to understand what's actually happening inside language models and use that to build systems that stay safe by default. Recent work: permanently embedding steering vectors into model weights, scaling experiments for AI control protocols (AI Safety Camp), and reasoning benchmarks that test models across 100+ languages and cultures.`,
+    `I'm a machine learning researcher from Chennai, currently an ML intern at Glance and starting an MSc in Machine Learning at UCL.`,
+    `My research is on AI safety and mechanistic interpretability. I want to understand what's actually happening inside language models, and use that understanding to build systems that stay safe by default.`,
     `I'm Tamil, from Chennai, and I follow Liverpool FC obsessively.`,
   ],
   links: {

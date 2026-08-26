@@ -1,27 +1,26 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { profile } from "@/data/profile";
+import { writing } from "@/data/writing";
 
-const hasLessWrong = profile.links.lesswrong !== "YOUR_LESSWRONG_URL";
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
 ---
 
-<Layout title="Writing — Kamesh R" description="Writing by Kamesh R on AI safety and interpretability.">
-  <h1 class="reveal" style="margin-bottom: 1.5rem;">Writing</h1>
+<Layout title="Writing · Kamesh R" description="Technical writing by Kamesh R on AI safety and interpretability.">
 
-  <div class="reveal" style="line-height: 1.7; color: var(--body);">
-    <p style="margin: 0 0 0.9rem;">
-      I write occasionally about AI safety, mechanistic interpretability, and reasoning —
-      things I'm actively working on or thinking through.
-    </p>
-    {hasLessWrong ? (
-      <p style="margin: 0;">
-        Most of it is on <a href={profile.links.lesswrong} target="_blank" rel="noopener">LessWrong</a>.
-      </p>
-    ) : (
-      <p style="margin: 0;">
-        I plan to start posting on <a href="https://www.lesswrong.com" target="_blank" rel="noopener">LessWrong</a> soon.
-        In the meantime, see my <a href="/publications">publications</a>.
-      </p>
-    )}
+  <h1 class="reveal">Writing</h1>
+  <p class="meta reveal" style="margin:0.4rem 0 1.5rem;">
+    Notes on interpretability and steering, posted on <a href="https://www.lesswrong.com/users/kamesh-r" target="_blank" rel="noopener">LessWrong</a>.
+  </p>
+
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:1.75rem;">
+    {writing.map((post) => (
+      <div>
+        <h3><a href={post.url} target="_blank" rel="noopener">{post.title}</a></h3>
+        <p style="margin:0.3rem 0 0.35rem; font-size:0.875rem; color:#444; line-height:1.65;">{post.summary}</p>
+        <p class="meta" style="margin:0;">{formatDate(post.date)}</p>
+      </div>
+    ))}
   </div>
+
 </Layout>

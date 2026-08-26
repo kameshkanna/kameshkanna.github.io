@@ -2,10 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import { profile } from "@/data/profile";
 import { publications } from "@/data/publications";
+import { writing } from "@/data/writing";
 import { experience, education } from "@/data/experience";
 import { projects, grants, service } from "@/data/projects";
 import { talks } from "@/data/talks";
-import { skills } from "@/data/skills";
+
+const formatDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
 ---
 
 <Layout
@@ -45,44 +48,29 @@ import { skills } from "@/data/skills";
   .site-nav .anchor-links a.is-active::after { right: 0; }
 
   /* ══════════════════════════════════════
-     Section bands — full-bleed alternating
-     background so each section reads as its
-     own distinct zone, not a continuous scroll
+     Section division: a clear rule and a
+     firm label, generous space around each
+     section without splitting into bands
      ══════════════════════════════════════ */
-  .band {
-    margin-left: -1.25rem;
-    margin-right: -1.25rem;
-    padding: 3.5rem 1.25rem;
+  section + section,
+  section + footer {
+    margin-top: 3.5rem;
+    padding-top: 3.5rem;
+    border-top: 1px solid var(--line);
   }
-  .band-inner { max-width: 680px; margin: 0 auto; }
-  .band-tint { background: var(--surface); }
-  .band-line-top { border-top: 1px solid var(--line); }
 
-  /* ── Section headings: big number + title ── */
-  .section-head {
-    display: flex;
-    align-items: baseline;
-    gap: 0.9rem;
-    margin: 0 0 2rem;
-  }
-  .section-num {
-    font-size: 0.875rem;
+  .section-title {
+    font-size: 0.6875rem;
     font-weight: 700;
-    color: var(--accent-line);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-  }
-  .section-name {
-    font-size: 1.375rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    color: var(--faint);
+    margin: 0 0 1.5rem;
   }
   .section-sub {
     font-size: 0.8125rem;
     color: var(--faint);
-    margin: -1.35rem 0 2rem 2rem;
+    margin: 2.25rem 0 0.85rem;
   }
 
   /* ── Hero ── */
@@ -133,11 +121,11 @@ import { skills } from "@/data/skills";
   /* ── Publications ── */
   .pub-list { display: flex; flex-direction: column; gap: 1.1rem; }
   .pub-item {
-    transition: transform 0.25s var(--ease), border-color 0.25s var(--ease);
-    padding: 0.9rem 1rem;
+    transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+    padding: 0.85rem 0.9rem;
     border-radius: 8px;
     border: 1px solid transparent;
-    margin: 0 -1rem;
+    margin: 0 -0.9rem;
   }
   .pub-item:hover { border-color: var(--line); transform: translateX(3px); }
   .pub-title {
@@ -152,6 +140,28 @@ import { skills } from "@/data/skills";
   .pub-meta { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.5; }
   .pub-meta a { color: var(--muted); border-bottom: 1px solid var(--line-soft); text-decoration: none; }
   .pub-meta a:hover { color: var(--accent); }
+
+  /* ── Writing ── */
+  .writing-list { display: flex; flex-direction: column; gap: 1.3rem; }
+  .writing-item {
+    transition: transform 0.2s var(--ease), border-color 0.2s var(--ease);
+    padding: 0.85rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    margin: 0 -0.9rem;
+  }
+  .writing-item:hover { border-color: var(--line); transform: translateX(3px); }
+  .writing-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.4;
+    margin: 0 0 0.3rem;
+  }
+  .writing-title a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
+  .writing-title a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+  .writing-summary { font-size: 0.8125rem; color: #555; margin: 0 0 0.3rem; line-height: 1.6; }
+  .writing-date { font-size: 0.75rem; color: var(--faint); margin: 0; }
 
   /* ── Experience ── */
   .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
@@ -226,19 +236,11 @@ import { skills } from "@/data/skills";
   .talk-year { font-size: 0.8125rem; color: var(--faint); white-space: nowrap; }
 
   /* ── Service ── */
-  .service-list { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1rem; }
+  .service-list { display: flex; flex-direction: column; gap: 0.4rem; }
   .service-item { font-size: 0.8125rem; color: #555; margin: 0; }
-
-  /* ── Skills ── */
-  .skills-list { display: flex; flex-direction: column; gap: 0.6rem; }
-  .skill-row { display: flex; gap: 0.75rem; font-size: 0.875rem; align-items: baseline; flex-wrap: wrap; }
-  .skill-label { font-weight: 600; color: var(--ink); min-width: 7rem; flex-shrink: 0; font-size: 0.8125rem; }
-  .skill-items { color: #444; line-height: 1.6; }
 
   /* ── Footer ── */
   .site-footer {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--line-soft);
     font-size: 0.8125rem;
     color: var(--faint);
     display: flex;
@@ -268,27 +270,30 @@ import { skills } from "@/data/skills";
     .hero h1 { font-size: 2.1rem; }
     .site-nav .anchor-links { gap: 1rem; }
     .site-nav .anchor-links a:nth-child(n+5) { display: none; }
-    .band { padding: 2.5rem 1.25rem; }
-    .section-name { font-size: 1.15rem; }
+    section + section,
+    section + footer {
+      margin-top: 2.5rem;
+      padding-top: 2.5rem;
+    }
   }
 </style>
 
 <!-- ── Sticky navigation ── -->
-<nav class="site-nav" id="page-nav" style="margin-left:-1.25rem; margin-right:-1.25rem; margin-top:-2.5rem; margin-bottom:0; width:calc(100% + 2.5rem);">
+<nav class="site-nav" id="page-nav" style="margin-left:-1.25rem; margin-right:-1.25rem; margin-top:-2.5rem; margin-bottom:2.5rem; width:calc(100% + 2.5rem);">
   <a href="#top" class="brand">Kamesh R</a>
   <div class="anchor-links">
     <a href="#about">About</a>
     <a href="#education">Education</a>
     <a href="#publications">Papers</a>
+    <a href="#writing">Writing</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
-    <a href="/writing">Writing</a>
   </div>
 </nav>
 
 <!-- ── Hero ── -->
-<section id="top" class="band">
-  <div class="band-inner hero">
+<section id="top">
+  <div class="hero">
     <div class="hero-text hero-enter">
       <h1>Kamesh R</h1>
       <p class="hero-role">
@@ -313,179 +318,142 @@ import { skills } from "@/data/skills";
 </section>
 
 <!-- ── About ── -->
-<section id="about" class="band band-tint band-line-top">
-  <div class="band-inner reveal reveal-left">
-    <div class="section-head">
-      <span class="section-num">01</span>
-      <h2 class="section-name">About</h2>
-    </div>
-    <div class="bio">
-      {profile.bio.map((para) => <p>{para}</p>)}
-    </div>
+<section id="about" class="reveal">
+  <p class="section-title">About</p>
+  <div class="bio">
+    {profile.bio.map((para) => <p>{para}</p>)}
   </div>
 </section>
 
 <!-- ── Education ── -->
-<section id="education" class="band band-line-top">
-  <div class="band-inner reveal reveal-right">
-    <div class="section-head">
-      <span class="section-num">02</span>
-      <h2 class="section-name">Education</h2>
-    </div>
-    <div class="edu-list reveal-stagger">
-      {education.map((ed) => (
-        <div class="edu-item">
-          <div>
-            <span class="edu-inst">{ed.institution}</span>
-            <span class="edu-degree">&ensp;—&ensp;{ed.degree}</span>
-          </div>
-          <span class="edu-period">{ed.period}</span>
+<section id="education" class="reveal">
+  <p class="section-title">Education</p>
+  <div class="edu-list reveal-stagger">
+    {education.map((ed) => (
+      <div class="edu-item">
+        <div>
+          <span class="edu-inst">{ed.institution}</span>
+          <span class="edu-degree">&ensp;·&ensp;{ed.degree}</span>
         </div>
-      ))}
-    </div>
+        <span class="edu-period">{ed.period}</span>
+      </div>
+    ))}
   </div>
 </section>
 
 <!-- ── Publications ── -->
-<section id="publications" class="band band-tint band-line-top">
-  <div class="band-inner reveal reveal-left">
-    <div class="section-head">
-      <span class="section-num">03</span>
-      <h2 class="section-name">Publications</h2>
-    </div>
-    <div class="pub-list reveal-stagger">
-      {publications.map((pub) => (
-        <div class="pub-item">
-          <p class="pub-title">
-            {pub.links?.arxiv
-              ? <a href={pub.links.arxiv} target="_blank" rel="noopener">{pub.title}</a>
-              : pub.links?.paper
-              ? <a href={pub.links.paper} target="_blank" rel="noopener">{pub.title}</a>
-              : pub.title}
-          </p>
-          <p class="pub-meta">
-            {pub.authors}&ensp;·&ensp;<em>{pub.venue}</em>
-            {pub.links?.poster && pub.links.poster !== "#" && <>&ensp;<a href={pub.links.poster} target="_blank" rel="noopener">[poster]</a></>}
-          </p>
-        </div>
-      ))}
-    </div>
+<section id="publications" class="reveal">
+  <p class="section-title">Publications</p>
+  <div class="pub-list reveal-stagger">
+    {publications.map((pub) => (
+      <div class="pub-item">
+        <p class="pub-title">
+          {pub.links?.arxiv
+            ? <a href={pub.links.arxiv} target="_blank" rel="noopener">{pub.title}</a>
+            : pub.links?.paper
+            ? <a href={pub.links.paper} target="_blank" rel="noopener">{pub.title}</a>
+            : pub.title}
+        </p>
+        <p class="pub-meta">
+          {pub.authors}&ensp;·&ensp;<em>{pub.venue}</em>
+          {pub.links?.poster && pub.links.poster !== "#" && <>&ensp;<a href={pub.links.poster} target="_blank" rel="noopener">[poster]</a></>}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<!-- ── Writing ── -->
+<section id="writing" class="reveal">
+  <p class="section-title">Writing</p>
+  <div class="writing-list reveal-stagger">
+    {writing.map((post) => (
+      <div class="writing-item">
+        <p class="writing-title">
+          <a href={post.url} target="_blank" rel="noopener">{post.title}</a>
+        </p>
+        <p class="writing-summary">{post.summary}</p>
+        <p class="writing-date">LessWrong &ensp;·&ensp; {formatDate(post.date)}</p>
+      </div>
+    ))}
   </div>
 </section>
 
 <!-- ── Experience ── -->
-<section id="experience" class="band band-line-top">
-  <div class="band-inner reveal reveal-right">
-    <div class="section-head">
-      <span class="section-num">04</span>
-      <h2 class="section-name">Experience</h2>
-    </div>
-    <div class="exp-list">
-      {experience.map((entry) => (
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">
-              {entry.role}<span class="exp-org">,&ensp;{entry.org}</span>
-            </span>
-            <span class="exp-period">{entry.period}</span>
-          </div>
-          <div class="exp-bullets">
-            {entry.bullets.map((b) => <p class="exp-bullet">{b}</p>)}
-          </div>
+<section id="experience" class="reveal">
+  <p class="section-title">Experience</p>
+  <div class="exp-list">
+    {experience.map((entry) => (
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-role">
+            {entry.role}<span class="exp-org">,&ensp;{entry.org}</span>
+          </span>
+          <span class="exp-period">{entry.period}</span>
         </div>
-      ))}
-    </div>
+        <div class="exp-bullets">
+          {entry.bullets.map((b) => <p class="exp-bullet">{b}</p>)}
+        </div>
+      </div>
+    ))}
   </div>
 </section>
 
 <!-- ── Projects ── -->
-<section id="projects" class="band band-tint band-line-top">
-  <div class="band-inner reveal reveal-left">
-    <div class="section-head">
-      <span class="section-num">05</span>
-      <h2 class="section-name">Research Projects</h2>
+<section id="projects" class="reveal">
+  <p class="section-title">Research Projects</p>
+  <div class="project-list">
+    {projects.map((project) => (
+      <div>
+        <p class="project-title">{project.title}</p>
+        <p class="project-desc">{project.description}</p>
+        <p class="project-highlight">{project.bullets[0]}</p>
+        <div class="project-tags">
+          {project.tags.map((tag) => <span class="tag">{tag}</span>)}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <p class="section-sub">Grants</p>
+  {grants.map((grant) => (
+    <div style="margin-bottom:0.75rem;">
+      <p class="grant-title">{grant.title} <span class="grant-amount">({grant.amount})</span></p>
+      <p class="grant-desc">{grant.description}</p>
     </div>
-    <div class="project-list">
-      {projects.map((project) => (
+  ))}
+
+  <p class="section-sub">Talks &amp; Seminars</p>
+  <div class="talk-list reveal-stagger">
+    {talks.map((talk) => (
+      <div class="talk-item">
         <div>
-          <p class="project-title">{project.title}</p>
-          <p class="project-desc">{project.description}</p>
-          <p class="project-highlight">{project.bullets[0]}</p>
-          <div class="project-tags">
-            {project.tags.map((tag) => <span class="tag">{tag}</span>)}
-          </div>
+          <span class="talk-title">{talk.title}</span>
+          <span class="talk-venue">&ensp;·&ensp;{talk.venue}</span>
         </div>
-      ))}
-    </div>
-
-    <div style="margin-top:2rem;">
-      <p class="section-sub" style="margin:0 0 1rem;">Grants</p>
-      {grants.map((grant) => (
-        <div style="margin-bottom:0.75rem;">
-          <p class="grant-title">{grant.title} <span class="grant-amount">({grant.amount})</span></p>
-          <p class="grant-desc">{grant.description}</p>
-        </div>
-      ))}
-    </div>
+        <span class="talk-year">{talk.year}</span>
+      </div>
+    ))}
   </div>
-</section>
 
-<!-- ── Talks & Service ── -->
-<section id="talks" class="band band-line-top">
-  <div class="band-inner reveal reveal-right">
-    <div class="section-head">
-      <span class="section-num">06</span>
-      <h2 class="section-name">Talks &amp; Seminars</h2>
-    </div>
-    <div class="talk-list reveal-stagger">
-      {talks.map((talk) => (
-        <div class="talk-item">
-          <div>
-            <span class="talk-title">{talk.title}</span>
-            <span class="talk-venue">&ensp;·&ensp;{talk.venue}</span>
-          </div>
-          <span class="talk-year">{talk.year}</span>
-        </div>
-      ))}
-    </div>
-
-    <p class="section-sub" style="margin:2rem 0 0.75rem;">Academic Service</p>
-    <div class="service-list">
-      {service.map((s) => (
-        <p class="service-item">{s.role}&ensp;—&ensp;{s.venue}</p>
-      ))}
-    </div>
-  </div>
-</section>
-
-<!-- ── Skills ── -->
-<section id="skills" class="band band-tint band-line-top">
-  <div class="band-inner reveal reveal-left">
-    <div class="section-head">
-      <span class="section-num">07</span>
-      <h2 class="section-name">Skills</h2>
-    </div>
-    <div class="skills-list">
-      {skills.map((group) => (
-        <div class="skill-row">
-          <span class="skill-label">{group.label}</span>
-          <span class="skill-items">{group.items.join(", ")}</span>
-        </div>
-      ))}
-    </div>
+  <p class="section-sub">Academic Service</p>
+  <div class="service-list">
+    {service.map((s) => (
+      <p class="service-item">{s.role}&ensp;·&ensp;{s.venue}</p>
+    ))}
   </div>
 </section>
 
 <!-- ── Footer ── -->
-<footer class="band band-line-top">
-  <div class="band-inner site-footer" style="padding-top:0; border-top:none;">
-    <span>Kamesh R · {new Date().getFullYear()}</span>
+<footer>
+  <div class="site-footer">
+    <span>Kamesh R &middot; {new Date().getFullYear()}</span>
     <span>
       <a href="/cv.pdf" target="_blank">CV (PDF)</a>
       &ensp;·&ensp;
       <a href="/publications">All papers</a>
       &ensp;·&ensp;
-      <a href="/writing">Writing</a>
+      <a href="/writing">All writing</a>
     </span>
   </div>
 </footer>
@@ -495,7 +463,7 @@ import { skills } from "@/data/skills";
 <script>
   // Highlight active nav link based on scroll position, and toggle
   // the sticky nav's border once the page has scrolled.
-  const sections = ["about","education","publications","experience","projects","talks","skills"];
+  const sections = ["about","education","publications","writing","experience","projects"];
   const links = document.querySelectorAll<HTMLAnchorElement>(".anchor-links a");
   const pageNav = document.getElementById("page-nav");
 
