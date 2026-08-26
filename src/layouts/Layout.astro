@@ -29,6 +29,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <title>{title}</title>
   </head>
   <body>
+    <div id="scroll-progress"></div>
     {showNav && <NavBar />}
     <main style="max-width: 680px; margin: 0 auto; padding: 2.5rem 1.25rem 4rem;">
       <slot />
@@ -54,5 +55,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
     );
     targets.forEach((el) => io.observe(el));
+  }
+
+  // Scroll progress bar
+  const progressBar = document.getElementById("scroll-progress");
+  if (progressBar) {
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - doc.clientHeight;
+      const pct = scrollable > 0 ? (doc.scrollTop / scrollable) * 100 : 0;
+      progressBar.style.width = `${pct}%`;
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
   }
 </script>

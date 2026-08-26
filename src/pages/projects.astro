@@ -12,6 +12,20 @@ import { talks } from "@/data/talks";
     <a href="/cv.pdf" target="_blank">Download CV (PDF)</a>
   </p>
 
+  <!-- ── Education ── -->
+  <h2 class="reveal">Education</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.75rem;">
+    {education.map((ed) => (
+      <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
+        <div>
+          <span style="font-weight:600; font-size:0.9375rem; color:var(--ink);">{ed.institution}</span>
+          <span class="meta">&ensp;—&ensp;{ed.degree}</span>
+        </div>
+        <span class="meta" style="white-space:nowrap;">{ed.period}</span>
+      </div>
+    ))}
+  </div>
+
   <!-- ── Research Projects ── -->
   <h2 class="reveal">Research Projects</h2>
   <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:1.25rem;">
@@ -31,23 +45,6 @@ import { talks } from "@/data/talks";
             {project.links?.paper && <a href={project.links.paper} target="_blank" rel="noopener">Paper</a>}
           </p>
         )}
-      </div>
-    ))}
-  </div>
-
-  <!-- ── Education ── -->
-  <h2 class="reveal">Education</h2>
-  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.75rem;">
-    {education.map((ed) => (
-      <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
-        <div>
-          <span style="font-weight:600; font-size:0.9375rem; color:var(--ink);">
-            {ed.institution}
-            {ed.upcoming && <span style="font-weight:500; font-size:0.6875rem; color:var(--accent); background:var(--accent-soft); border:1px solid var(--accent-line); padding:0.05rem 0.35rem; border-radius:3px; margin-left:0.35rem;">upcoming</span>}
-          </span>
-          <span class="meta">&ensp;—&ensp;{ed.degree}</span>
-        </div>
-        <span class="meta" style="white-space:nowrap;">{ed.period}</span>
       </div>
     ))}
   </div>

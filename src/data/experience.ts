@@ -21,7 +21,6 @@ export const education: EducationEntry[] = [
     degree: "Master of Science in Machine Learning",
     location: "London, UK",
     period: "Aug 2026 – Aug 2027",
-    upcoming: true,
   },
   {
     institution: "Sathyabama Institute of Science and Technology",
@@ -69,7 +68,7 @@ export const experience: ExperienceEntry[] = [
     role: "Independent Interpretability Researcher",
     org: "Mentored by David Africa (UK AI Security Institute)",
     location: "Remote",
-    period: "Nov 2025 – Feb 2026, Aug 2026 – Present",
+    period: "Nov 2025 – Feb 2026",
     bullets: [
       "Conducted independent research on mechanistic interpretability, with direct technical guidance from a Research Scientist at the UK AI Safety Institute.",
       "Developed a framework to permanently embed steering vectors into model weights, enabling persistent safety behaviors without inference-time compute overhead.",

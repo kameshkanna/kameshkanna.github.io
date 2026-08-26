@@ -118,21 +118,36 @@
    ══════════════════════════════════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transform: translateY(28px) scale(0.985);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
   will-change: opacity, transform;
 }
 
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+}
+
+/* Directional variants — alternate per section for a less uniform feel */
+.reveal-left {
+  transform: translateX(-32px);
+}
+.reveal-left.is-visible {
+  transform: translateX(0);
+}
+
+.reveal-right {
+  transform: translateX(32px);
+}
+.reveal-right.is-visible {
+  transform: translateX(0);
 }
 
 /* Stagger children within a revealed container */
 .reveal-stagger > * {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transform: translateY(16px);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
 
 .reveal-stagger.is-visible > * {
@@ -141,18 +156,40 @@
 }
 
 .reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 60ms; }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 120ms; }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 180ms; }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 240ms; }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 300ms; }
-.reveal-stagger.is-visible > *:nth-child(n+7) { transition-delay: 340ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 70ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 140ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 210ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 280ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 350ms; }
+.reveal-stagger.is-visible > *:nth-child(n+7) { transition-delay: 400ms; }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
+  .reveal-left,
+  .reveal-right,
   .reveal-stagger > * {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+
+/* ══════════════════════════════════════
+   Scroll progress bar (fixed top strip)
+   ══════════════════════════════════════ */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--accent);
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scroll-progress {
+    display: none;
   }
 }
