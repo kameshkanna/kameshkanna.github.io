@@ -13,13 +13,13 @@ const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
 
 <Layout title="Publications — Kamesh R" description="Research publications by Kamesh R.">
 
-  <h1>Publications</h1>
-  <p class="meta" style="margin:0.4rem 0 0;">AI safety, reasoning evaluation, multilingual NLP.</p>
+  <h1 class="reveal">Publications</h1>
+  <p class="meta reveal" style="margin:0.4rem 0 0;">AI safety, reasoning evaluation, multilingual NLP.</p>
 
   {years.map((year) => (
-    <div>
+    <div class="reveal">
       <h2>{year}</h2>
-      <div style="display:flex; flex-direction:column; gap:1rem;">
+      <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:1rem;">
         {byYear[year].map((pub) => (
           <div>
             <h3>
@@ -31,7 +31,7 @@ const years = Object.keys(byYear).map(Number).sort((a, b) => b - a);
             </h3>
             <p class="meta" style="margin:0;">
               {pub.authors}&ensp;·&ensp;<em>{pub.venue}</em>
-              {pub.links?.poster && <>&ensp;[<a href={pub.links.poster} target="_blank" rel="noopener">poster</a>]</>}
+              {pub.links?.poster && pub.links.poster !== "#" && <>&ensp;[<a href={pub.links.poster} target="_blank" rel="noopener">poster</a>]</>}
             </p>
           </div>
         ))}

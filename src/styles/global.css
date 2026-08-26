@@ -2,10 +2,33 @@
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* ── Neutrals ── */
+  --ink: #0a0a0a;
+  --ink-soft: #1a1a1a;
+  --body: #2a2a2a;
+  --muted: #6b6b6b;
+  --faint: #9a9a9a;
+  --line: #e6e6e4;
+  --line-soft: #efefed;
+  --surface: #fafaf9;
+  --bg: #fefefe;
+
+  /* ── Accent (warm indigo, used sparingly) ── */
+  --accent: #4338ca;
+  --accent-soft: #eef0fd;
+  --accent-line: #c7ccf7;
+
+  /* ── Motion ── */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur: 0.6s;
+}
 
 @layer base {
   html {
@@ -15,69 +38,121 @@
     scroll-behavior: smooth;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   body {
-    background: #fff;
-    color: #111;
+    background: var(--bg);
+    color: var(--body);
     line-height: 1.7;
     font-size: 0.9375rem;
   }
 
-  /* ── Level 1: page name ── */
   h1 {
     font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    color: #000;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--ink);
     margin: 0;
   }
 
-  /* ── Level 2: section labels ── */
   h2 {
     font-size: 0.6875rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #888;
-    margin: 2.75rem 0 1rem;
-    padding-bottom: 0.375rem;
-    border-bottom: 1px solid #e0e0e0;
+    letter-spacing: 0.09em;
+    color: var(--faint);
+    margin: 2.75rem 0 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--line);
   }
 
-  /* ── Level 3: item titles (pubs, roles) ── */
   h3 {
     font-size: 0.9375rem;
     font-weight: 600;
-    color: #000;
+    color: var(--ink);
     margin: 0 0 0.15rem;
     line-height: 1.4;
   }
 
   a {
-    color: #111;
+    color: var(--ink);
     text-decoration: underline;
     text-underline-offset: 2px;
     text-decoration-thickness: 1px;
+    text-decoration-color: var(--line);
+    transition: text-decoration-color 0.2s var(--ease), color 0.2s var(--ease);
   }
 
   a:hover {
-    color: #000;
-    text-decoration: none;
+    color: var(--accent);
+    text-decoration-color: currentColor;
   }
 
   ::selection {
-    background: #e8e8e8;
+    background: var(--accent-soft);
+    color: var(--ink);
   }
 }
 
 /* ── Metadata: authors, dates, venues ── */
 .meta {
   font-size: 0.8125rem;
-  color: #666;
+  color: var(--muted);
   line-height: 1.5;
 }
 
 /* ── Nav no-underline override ── */
 .no-underline {
   text-decoration: none !important;
+}
+
+/* ══════════════════════════════════════
+   Scroll-reveal system
+   Elements start hidden/offset, animate in
+   via IntersectionObserver toggling .is-visible
+   ══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children within a revealed container */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.reveal-stagger.is-visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 60ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 120ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 180ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 240ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 300ms; }
+.reveal-stagger.is-visible > *:nth-child(n+7) { transition-delay: 340ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }

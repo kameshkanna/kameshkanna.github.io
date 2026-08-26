@@ -8,13 +8,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: "Internalizing Safety via Weight-Level Activation Steering",
+    title: "ManifoldSteer: Geometry-Preserving Activation Steering in LLM Residual Streams",
     description:
-      "A novel model editing technique to permanently embed transient safety steering vectors into Transformer model weights.",
+      "Geometry-preserving steering operators for LLM residual streams, built on an empirical layer-selection criterion derived from mapping Qwen2.5-3B's semantic submanifolds.",
     bullets: [
-      "Transforms temporary activation interventions into persistent architectural alignment without inference-time compute overhead.",
-      "Achieved robust safety behavior comparable to standard runtime steering while preserving general coherence.",
-      "Internalizes safety concepts directly into the target architecture's residual stream projections.",
+      "Mapped the Qwen2.5-3B residual stream to identify ~5–6D semantic submanifolds, establishing an empirical layer-selection criterion for safe steering.",
+      "Designed geometry-preserving steering operators that eliminate the 20× residual stream norm collapse inherent to standard additive CAA baselines.",
+      "Revealed RLHF safety routing occurs 18 layers before peak gradient saliency, proposing an entropy-delta proxy for accurate behavioral targeting.",
     ],
     tags: ["Mechanistic Interpretability", "AI Safety", "PyTorch", "Transformers"],
   },
@@ -52,6 +52,22 @@ export interface ServiceEntry {
 }
 
 export const service: ServiceEntry[] = [
+  {
+    role: "Reviewer",
+    venue: "ICML 2026, AI-MATH Workshop",
+  },
+  {
+    role: "Reviewer",
+    venue: "ICML 2026, Mechanistic Interpretability Workshop",
+  },
+  {
+    role: "Reviewer",
+    venue: "ICML 2026, Failure Modes in Agentic AI Workshop",
+  },
+  {
+    role: "Reviewer",
+    venue: "ICML 2026, SCALE Workshop",
+  },
   {
     role: "Reviewer",
     venue: "NeurIPS 2025, AI-MATH Workshop",

@@ -20,25 +20,34 @@ import { skills } from "@/data/skills";
     position: sticky;
     top: 0;
     z-index: 50;
-    background: rgba(255,255,255,0.95);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid #e8e8e8;
+    background: rgba(254, 254, 254, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line-soft);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1.25rem;
     height: 46px;
     max-width: 100%;
+    transition: border-color 0.3s var(--ease);
   }
-  .site-nav a { text-decoration: none; color: #666; font-size: 0.8125rem; }
-  .site-nav a:hover { color: #000; text-decoration: none; }
-  .site-nav .brand { font-weight: 700; color: #000; font-size: 0.9rem; letter-spacing: -0.01em; }
+  .site-nav.scrolled { border-color: var(--line); }
+  .site-nav a { text-decoration: none; color: var(--muted); font-size: 0.8125rem; transition: color 0.2s var(--ease); }
+  .site-nav a:hover { color: var(--ink); text-decoration: none; }
+  .site-nav .brand { font-weight: 700; color: var(--ink); font-size: 0.9rem; letter-spacing: -0.01em; }
   .site-nav .anchor-links { display: flex; gap: 1.5rem; }
+  .site-nav .anchor-links a { position: relative; padding: 0.2rem 0; }
+  .site-nav .anchor-links a::after {
+    content: ""; position: absolute; left: 0; right: 100%; bottom: -1px;
+    height: 1px; background: var(--accent); transition: right 0.25s var(--ease);
+  }
+  .site-nav .anchor-links a.is-active::after { right: 0; }
 
   /* ── Section dividers ── */
   .section-divider {
     border: none;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid var(--line);
     margin: 3rem 0;
   }
 
@@ -48,7 +57,7 @@ import { skills } from "@/data/skills";
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #999;
+    color: var(--faint);
     margin: 0 0 1.5rem;
   }
 
@@ -60,12 +69,12 @@ import { skills } from "@/data/skills";
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1.05;
-    color: #000;
+    color: var(--ink);
     margin: 0 0 0.5rem;
   }
   .hero-role {
     font-size: 0.875rem;
-    color: #555;
+    color: var(--muted);
     margin: 0 0 1.1rem;
     line-height: 1.5;
   }
@@ -76,40 +85,54 @@ import { skills } from "@/data/skills";
     gap: 0 0.1rem;
     line-height: 2;
   }
-  .hero-links a { color: #111; text-decoration: none; border-bottom: 1px solid #bbb; }
-  .hero-links a:hover { border-bottom-color: #000; }
+  .hero-links a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
+  .hero-links a:hover { border-bottom-color: var(--accent); color: var(--accent); }
   .hero-links .sep { color: #ccc; padding: 0 0.4rem; }
   .hero-photo {
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 8px;
     flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+    transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  }
+  .hero-photo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.06), 0 14px 32px rgba(0,0,0,0.09);
   }
 
   /* ── Bio ── */
-  .bio p { margin: 0 0 0.85rem; font-size: 0.9375rem; color: #222; line-height: 1.75; }
+  .bio p { margin: 0 0 0.85rem; font-size: 0.9375rem; color: var(--body); line-height: 1.75; }
   .bio p:last-child { margin-bottom: 0; }
 
   /* ── Publications ── */
   .pub-list { display: flex; flex-direction: column; gap: 1.1rem; }
-  .pub-item {}
+  .pub-item { transition: transform 0.25s var(--ease); }
   .pub-title {
     font-size: 0.9375rem;
     font-weight: 600;
-    color: #000;
+    color: var(--ink);
     line-height: 1.4;
     margin: 0 0 0.2rem;
   }
-  .pub-title a { color: #000; text-decoration: none; border-bottom: 1px solid #ccc; }
-  .pub-title a:hover { border-bottom-color: #000; }
-  .pub-meta { font-size: 0.8125rem; color: #666; margin: 0; line-height: 1.5; }
-  .pub-meta a { color: #666; border-bottom: 1px solid #ddd; text-decoration: none; }
-  .pub-meta a:hover { color: #000; }
+  .pub-title a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); transition: border-color 0.2s var(--ease), color 0.2s var(--ease); }
+  .pub-title a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+  .pub-meta { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.5; }
+  .pub-meta a { color: var(--muted); border-bottom: 1px solid var(--line-soft); text-decoration: none; }
+  .pub-meta a:hover { color: var(--accent); }
 
   /* ── Experience ── */
   .exp-list { display: flex; flex-direction: column; gap: 1.5rem; }
-  .exp-item { padding-left: 1rem; border-left: 2px solid #e8e8e8; }
+  .exp-item { padding-left: 1.1rem; border-left: 2px solid var(--line); position: relative; transition: border-color 0.25s var(--ease); }
+  .exp-item::before {
+    content: ""; position: absolute; left: -5px; top: 0.35rem;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--line);
+    transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+  }
+  .exp-item:hover { border-left-color: var(--accent-line); }
+  .exp-item:hover::before { border-color: var(--accent); background: var(--accent); }
   .exp-header {
     display: flex;
     justify-content: space-between;
@@ -118,9 +141,9 @@ import { skills } from "@/data/skills";
     gap: 0.25rem;
     margin-bottom: 0.35rem;
   }
-  .exp-role { font-size: 0.9375rem; font-weight: 600; color: #000; }
+  .exp-role { font-size: 0.9375rem; font-weight: 600; color: var(--ink); }
   .exp-org { font-weight: 400; color: #444; }
-  .exp-period { font-size: 0.8125rem; color: #888; white-space: nowrap; }
+  .exp-period { font-size: 0.8125rem; color: var(--faint); white-space: nowrap; }
   .exp-bullets { display: flex; flex-direction: column; gap: 0.2rem; }
   .exp-bullet { font-size: 0.8125rem; color: #555; margin: 0; line-height: 1.6; }
 
@@ -133,15 +156,16 @@ import { skills } from "@/data/skills";
     flex-wrap: wrap;
     gap: 0.2rem;
   }
-  .edu-inst { font-size: 0.9375rem; font-weight: 600; color: #000; }
+  .edu-inst { font-size: 0.9375rem; font-weight: 600; color: var(--ink); }
   .edu-degree { font-size: 0.8125rem; color: #555; }
-  .edu-period { font-size: 0.8125rem; color: #888; white-space: nowrap; }
+  .edu-period { font-size: 0.8125rem; color: var(--faint); white-space: nowrap; }
   .upcoming-tag {
     font-size: 0.6875rem;
     font-weight: 500;
-    color: #888;
-    border: 1px solid #ddd;
-    padding: 0 0.3rem;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    padding: 0.05rem 0.35rem;
     border-radius: 3px;
     margin-left: 0.35rem;
     vertical-align: middle;
@@ -149,21 +173,23 @@ import { skills } from "@/data/skills";
 
   /* ── Projects ── */
   .project-list { display: flex; flex-direction: column; gap: 1.4rem; }
-  .project-title { font-size: 0.9375rem; font-weight: 600; color: #000; margin: 0 0 0.25rem; }
+  .project-title { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin: 0 0 0.25rem; }
   .project-desc { font-size: 0.875rem; color: #444; margin: 0 0 0.4rem; line-height: 1.6; }
-  .project-highlight { font-size: 0.8125rem; color: #666; margin: 0; line-height: 1.6; }
+  .project-highlight { font-size: 0.8125rem; color: var(--muted); margin: 0; line-height: 1.6; }
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.5rem; }
   .tag {
     font-size: 0.6875rem;
     color: #777;
-    border: 1px solid #ddd;
-    padding: 0.1rem 0.4rem;
+    border: 1px solid var(--line);
+    padding: 0.1rem 0.45rem;
     border-radius: 3px;
+    transition: border-color 0.2s var(--ease), color 0.2s var(--ease), background 0.2s var(--ease);
   }
+  .tag:hover { border-color: var(--accent-line); color: var(--accent); background: var(--accent-soft); }
 
   /* ── Grants ── */
-  .grant-title { font-size: 0.9375rem; font-weight: 600; color: #000; margin: 0 0 0.2rem; }
-  .grant-amount { font-weight: 400; color: #666; font-size: 0.875rem; }
+  .grant-title { font-size: 0.9375rem; font-weight: 600; color: var(--ink); margin: 0 0 0.2rem; }
+  .grant-amount { font-weight: 400; color: var(--muted); font-size: 0.875rem; }
   .grant-desc { font-size: 0.8125rem; color: #555; margin: 0; line-height: 1.6; }
 
   /* ── Talks ── */
@@ -176,34 +202,46 @@ import { skills } from "@/data/skills";
     gap: 0.25rem;
   }
   .talk-title { font-size: 0.9375rem; color: #111; }
-  .talk-venue { font-size: 0.8125rem; color: #666; }
-  .talk-year { font-size: 0.8125rem; color: #999; white-space: nowrap; }
+  .talk-venue { font-size: 0.8125rem; color: var(--muted); }
+  .talk-year { font-size: 0.8125rem; color: var(--faint); white-space: nowrap; }
 
   /* ── Service ── */
   .service-list { display: flex; flex-direction: column; gap: 0.4rem; margin-top: 1rem; }
   .service-item { font-size: 0.8125rem; color: #555; margin: 0; }
 
   /* ── Skills ── */
-  .skills-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .skills-list { display: flex; flex-direction: column; gap: 0.6rem; }
   .skill-row { display: flex; gap: 0.75rem; font-size: 0.875rem; align-items: baseline; flex-wrap: wrap; }
-  .skill-label { font-weight: 600; color: #000; min-width: 7rem; flex-shrink: 0; font-size: 0.8125rem; }
+  .skill-label { font-weight: 600; color: var(--ink); min-width: 7rem; flex-shrink: 0; font-size: 0.8125rem; }
   .skill-items { color: #444; line-height: 1.6; }
 
   /* ── Footer ── */
   .site-footer {
     margin-top: 3rem;
     padding-top: 1.5rem;
-    border-top: 1px solid #e8e8e8;
+    border-top: 1px solid var(--line-soft);
     font-size: 0.8125rem;
-    color: #aaa;
+    color: var(--faint);
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  .site-footer a { color: #888; text-decoration: none; border-bottom: 1px solid #ddd; }
-  .site-footer a:hover { color: #000; }
+  .site-footer a { color: #888; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .site-footer a:hover { color: var(--accent); border-bottom-color: var(--accent-line); }
+
+  /* ── Hero entrance (plays once on load, no scroll dependency) ── */
+  .hero-enter { animation: hero-in 0.7s var(--ease) both; }
+  .hero-enter.hero-enter-delay { animation-delay: 0.08s; }
+  @keyframes hero-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-enter { animation: none; }
+  }
 
   @media (max-width: 520px) {
     .hero { flex-direction: column-reverse; gap: 1.25rem; }
@@ -215,7 +253,7 @@ import { skills } from "@/data/skills";
 </style>
 
 <!-- ── Sticky navigation ── -->
-<nav class="site-nav" style="margin-left:-1.25rem; margin-right:-1.25rem; margin-top:-2.5rem; margin-bottom:2.5rem; width:calc(100% + 2.5rem);">
+<nav class="site-nav" id="page-nav" style="margin-left:-1.25rem; margin-right:-1.25rem; margin-top:-2.5rem; margin-bottom:2.5rem; width:calc(100% + 2.5rem);">
   <a href="#top" class="brand">Kamesh R</a>
   <div class="anchor-links">
     <a href="#about">About</a>
@@ -230,7 +268,7 @@ import { skills } from "@/data/skills";
 <!-- ── Hero ── -->
 <section id="top">
   <div class="hero">
-    <div class="hero-text">
+    <div class="hero-text hero-enter">
       <h1>Kamesh R</h1>
       <p class="hero-role">
         ML Intern, Glance &ensp;·&ensp; MSc Machine Learning, UCL (Aug 2026)
@@ -249,14 +287,14 @@ import { skills } from "@/data/skills";
         <a href={profile.links.cv} target="_blank">CV</a>
       </p>
     </div>
-    <img src="/images/profile.jpg" alt="Kamesh R" class="hero-photo" />
+    <img src="/images/profile.jpg" alt="Kamesh R" class="hero-photo hero-enter hero-enter-delay" />
   </div>
 </section>
 
 <hr class="section-divider" />
 
 <!-- ── About ── -->
-<section id="about">
+<section id="about" class="reveal">
   <p class="section-title">About</p>
   <div class="bio">
     {profile.bio.map((para) => <p>{para}</p>)}
@@ -266,9 +304,9 @@ import { skills } from "@/data/skills";
 <hr class="section-divider" />
 
 <!-- ── Publications ── -->
-<section id="publications">
+<section id="publications" class="reveal">
   <p class="section-title">Publications</p>
-  <div class="pub-list">
+  <div class="pub-list reveal-stagger">
     {publications.map((pub) => (
       <div class="pub-item">
         <p class="pub-title">
@@ -280,7 +318,7 @@ import { skills } from "@/data/skills";
         </p>
         <p class="pub-meta">
           {pub.authors}&ensp;·&ensp;<em>{pub.venue}</em>
-          {pub.links?.poster && <>&ensp;<a href={pub.links.poster} target="_blank" rel="noopener">[poster]</a></>}
+          {pub.links?.poster && pub.links.poster !== "#" && <>&ensp;<a href={pub.links.poster} target="_blank" rel="noopener">[poster]</a></>}
         </p>
       </div>
     ))}
@@ -290,7 +328,7 @@ import { skills } from "@/data/skills";
 <hr class="section-divider" />
 
 <!-- ── Experience ── -->
-<section id="experience">
+<section id="experience" class="reveal">
   <p class="section-title">Experience</p>
   <div class="exp-list">
     {experience.map((entry) => (
@@ -312,7 +350,7 @@ import { skills } from "@/data/skills";
 <hr class="section-divider" />
 
 <!-- ── Education ── -->
-<section id="education">
+<section id="education" class="reveal">
   <p class="section-title">Education</p>
   <div class="edu-list">
     {education.map((ed) => (
@@ -333,7 +371,7 @@ import { skills } from "@/data/skills";
 <hr class="section-divider" />
 
 <!-- ── Projects ── -->
-<section id="projects">
+<section id="projects" class="reveal">
   <p class="section-title">Research Projects</p>
   <div class="project-list">
     {projects.map((project) => (
@@ -362,7 +400,7 @@ import { skills } from "@/data/skills";
 <hr class="section-divider" />
 
 <!-- ── Talks & Service ── -->
-<section id="talks">
+<section id="talks" class="reveal">
   <p class="section-title">Talks &amp; Seminars</p>
   <div class="talk-list">
     {talks.map((talk) => (
@@ -387,7 +425,7 @@ import { skills } from "@/data/skills";
 <hr class="section-divider" />
 
 <!-- ── Skills ── -->
-<section id="skills">
+<section id="skills" class="reveal">
   <p class="section-title">Skills</p>
   <div class="skills-list">
     {skills.map((group) => (
@@ -414,9 +452,11 @@ import { skills } from "@/data/skills";
 </Layout>
 
 <script>
-  // Highlight active nav link based on scroll position
+  // Highlight active nav link based on scroll position, and toggle
+  // the sticky nav's border once the page has scrolled.
   const sections = ["about","publications","experience","education","projects","talks","skills"];
   const links = document.querySelectorAll<HTMLAnchorElement>(".anchor-links a");
+  const pageNav = document.getElementById("page-nav");
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -424,8 +464,7 @@ import { skills } from "@/data/skills";
         const id = entry.target.id;
         links.forEach((l) => {
           const href = l.getAttribute("href")?.slice(1);
-          l.style.color = href === id ? "#000" : "";
-          l.style.fontWeight = href === id ? "600" : "";
+          l.classList.toggle("is-active", href === id);
         });
       }
     });
@@ -435,4 +474,10 @@ import { skills } from "@/data/skills";
     const el = document.getElementById(id);
     if (el) observer.observe(el);
   });
+
+  if (pageNav) {
+    const onScroll = () => pageNav.classList.toggle("scrolled", window.scrollY > 4);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
 </script>

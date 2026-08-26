@@ -38,9 +38,9 @@ export const experience: ExperienceEntry[] = [
     location: "Bengaluru, India",
     period: "Feb 2026 – Present",
     bullets: [
-      "Built and optimized catalog retrieval pipelines for the Glance app, improving content discovery across millions of items.",
-      "Researched and reimplemented SOTA embedding techniques to develop internal catalog-focused embeddings tailored to Glance's content domain.",
-      "Achieved a 2× improvement in retrieval metrics by reimplementing SOTA techniques, significantly enhancing catalog search relevance and ranking quality.",
+      "Designed an LLM-as-judge evaluation pipeline for catalog recommendations, testing prompting strategies (chain-of-thought, structured rubrics, multi-step verification) to improve judgment reliability and reduce false positives.",
+      "Developed a method to distill human annotator and LLM-judge signals into a cross-encoder, enabling recommendation scoring for zero-usage / cold-start users with no behavioral history.",
+      "Built and optimized catalog retrieval pipelines, improving content discovery across millions of items; achieved a 2× improvement in retrieval metrics by reimplementing SOTA embedding techniques from recent papers.",
     ],
   },
   {
@@ -69,10 +69,10 @@ export const experience: ExperienceEntry[] = [
     role: "Independent Interpretability Researcher",
     org: "Mentored by David Africa (UK AI Security Institute)",
     location: "Remote",
-    period: "Nov 2025 – Feb 2026",
+    period: "Nov 2025 – Feb 2026, Aug 2026 – Present",
     bullets: [
-      "Conducted independent research on mechanistic interpretability with direct technical guidance from a Research Scientist at the UK AI Safety Institute.",
-      "Developed a framework to permanently embed steering vectors into model weights, enabling persistent safety behaviors without inference-time overhead.",
+      "Conducted independent research on mechanistic interpretability, with direct technical guidance from a Research Scientist at the UK AI Safety Institute.",
+      "Developed a framework to permanently embed steering vectors into model weights, enabling persistent safety behaviors without inference-time compute overhead.",
     ],
   },
   {
@@ -81,9 +81,8 @@ export const experience: ExperienceEntry[] = [
     location: "Hyderabad, India",
     period: "May 2025 – Oct 2025",
     bullets: [
-      "Researched Universal Semantic Representations and developed techniques for generating natural language from abstract syntactic-semantic structures.",
-      "Built Controlled Image-to-Text Generation systems for scientific images ensuring accurate, context-aware, domain-specific descriptions.",
-      "Conducted workshops on prompt engineering for linguistics researchers.",
+      "Researched Universal Semantic Representations and developed techniques for generating coherent natural language sentences from abstract syntactic-semantic structures.",
+      "Worked on Controlled Image-to-Text Generation systems for scientific images to ensure accurate, context-aware, domain-specific textual descriptions.",
     ],
   },
   {

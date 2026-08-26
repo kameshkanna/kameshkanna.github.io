@@ -11,26 +11,38 @@ const currentPath = Astro.url.pathname;
 
 <style>
   header {
-    border-bottom: 1px solid #e8e8e8;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(254, 254, 254, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line-soft);
+    transition: border-color 0.3s var(--ease);
+  }
+  header.scrolled {
+    border-color: var(--line);
   }
   nav {
     max-width: 680px;
     margin: 0 auto;
     padding: 0 1.25rem;
-    height: 44px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 0.875rem;
   }
   .site-name {
-    font-weight: 600;
-    color: #000;
+    font-weight: 700;
+    color: var(--ink);
     text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: opacity 0.2s var(--ease);
   }
   .site-name:hover {
     text-decoration: none;
-    color: #444;
+    opacity: 0.6;
   }
   ul {
     list-style: none;
@@ -40,21 +52,40 @@ const currentPath = Astro.url.pathname;
     gap: 1.5rem;
   }
   a.nav-link {
-    color: #666;
+    position: relative;
+    color: var(--muted);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+    padding: 0.2rem 0;
+    transition: color 0.2s var(--ease);
+  }
+  a.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -1px;
+    height: 1px;
+    background: var(--ink);
+    transition: right 0.25s var(--ease);
   }
   a.nav-link:hover {
-    color: #000;
-    text-decoration: none;
+    color: var(--ink);
+  }
+  a.nav-link:hover::after {
+    right: 0;
   }
   a.nav-link.active {
-    color: #000;
+    color: var(--ink);
     font-weight: 500;
+  }
+  a.nav-link.active::after {
+    right: 0;
+    background: var(--accent);
   }
 </style>
 
-<header>
+<header id="site-header">
   <nav>
     <a href="/" class="site-name">Kamesh R</a>
     <ul>
@@ -73,3 +104,14 @@ const currentPath = Astro.url.pathname;
     </ul>
   </nav>
 </header>
+
+<script>
+  const header = document.getElementById("site-header");
+  if (header) {
+    const onScroll = () => {
+      header.classList.toggle("scrolled", window.scrollY > 4);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+</script>

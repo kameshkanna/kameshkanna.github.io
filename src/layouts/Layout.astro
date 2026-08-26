@@ -22,6 +22,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:creator" content="@edkamesh" />
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -34,3 +35,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     </main>
   </body>
 </html>
+
+<script>
+  // Reveal-on-scroll: observe every .reveal / .reveal-stagger element and
+  // flip .is-visible once it enters the viewport. Runs once per element.
+  const targets = document.querySelectorAll<HTMLElement>(".reveal, .reveal-stagger");
+
+  if (targets.length) {
+    const io = new IntersectionObserver(
+      (entries, observer) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -8% 0px" }
+    );
+    targets.forEach((el) => io.observe(el));
+  }
+</script>

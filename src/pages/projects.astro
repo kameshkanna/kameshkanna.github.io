@@ -7,21 +7,21 @@ import { talks } from "@/data/talks";
 
 <Layout title="Projects — Kamesh R" description="Projects, experience, talks, and more.">
 
-  <h1>Projects &amp; Experience</h1>
-  <p class="meta" style="margin:0.4rem 0 0;">
+  <h1 class="reveal">Projects &amp; Experience</h1>
+  <p class="meta reveal" style="margin:0.4rem 0 0;">
     <a href="/cv.pdf" target="_blank">Download CV (PDF)</a>
   </p>
 
   <!-- ── Research Projects ── -->
-  <h2>Research Projects</h2>
-  <div style="display:flex; flex-direction:column; gap:1.25rem;">
+  <h2 class="reveal">Research Projects</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:1.25rem;">
     {projects.map((project) => (
       <div>
         <h3>{project.title}</h3>
         <p style="margin:0.2rem 0 0.4rem; font-size:0.9375rem; color:#333;">{project.description}</p>
         <div style="display:flex; flex-direction:column; gap:0.2rem;">
           {project.bullets.map((b) => (
-            <p class="meta" style="margin:0; padding-left:1rem; border-left:2px solid #e8e8e8;">{b}</p>
+            <p class="meta" style="margin:0; padding-left:1rem; border-left:2px solid var(--line);">{b}</p>
           ))}
         </div>
         {(project.links?.github || project.links?.paper) && (
@@ -36,14 +36,14 @@ import { talks } from "@/data/talks";
   </div>
 
   <!-- ── Education ── -->
-  <h2>Education</h2>
-  <div style="display:flex; flex-direction:column; gap:0.75rem;">
+  <h2 class="reveal">Education</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.75rem;">
     {education.map((ed) => (
       <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
         <div>
-          <span style="font-weight:600; font-size:0.9375rem; color:#000;">
+          <span style="font-weight:600; font-size:0.9375rem; color:var(--ink);">
             {ed.institution}
-            {ed.upcoming && <span style="font-weight:400; font-size:0.8125rem; color:#888;"> (upcoming)</span>}
+            {ed.upcoming && <span style="font-weight:500; font-size:0.6875rem; color:var(--accent); background:var(--accent-soft); border:1px solid var(--accent-line); padding:0.05rem 0.35rem; border-radius:3px; margin-left:0.35rem;">upcoming</span>}
           </span>
           <span class="meta">&ensp;—&ensp;{ed.degree}</span>
         </div>
@@ -53,8 +53,8 @@ import { talks } from "@/data/talks";
   </div>
 
   <!-- ── Experience ── -->
-  <h2>Experience</h2>
-  <div style="display:flex; flex-direction:column; gap:1.25rem;">
+  <h2 class="reveal">Experience</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:1.25rem;">
     {experience.map((entry) => (
       <div>
         <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem; margin-bottom:0.35rem;">
@@ -73,8 +73,8 @@ import { talks } from "@/data/talks";
   </div>
 
   <!-- ── Talks ── -->
-  <h2>Talks &amp; Seminars</h2>
-  <div style="display:flex; flex-direction:column; gap:0.6rem;">
+  <h2 class="reveal">Talks &amp; Seminars</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.6rem;">
     {talks.map((talk) => (
       <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:0.25rem;">
         <div>
@@ -87,8 +87,8 @@ import { talks } from "@/data/talks";
   </div>
 
   <!-- ── Grants ── -->
-  <h2>Grants</h2>
-  <div style="display:flex; flex-direction:column; gap:0.75rem;">
+  <h2 class="reveal">Grants</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.75rem;">
     {grants.map((grant) => (
       <div>
         <p style="margin:0 0 0.2rem;">
@@ -101,8 +101,8 @@ import { talks } from "@/data/talks";
   </div>
 
   <!-- ── Service ── -->
-  <h2>Service</h2>
-  <div style="display:flex; flex-direction:column; gap:0.4rem;">
+  <h2 class="reveal">Service</h2>
+  <div class="reveal-stagger" style="display:flex; flex-direction:column; gap:0.4rem;">
     {service.map((s) => (
       <p class="meta" style="margin:0;">{s.role}&ensp;—&ensp;{s.venue}</p>
     ))}

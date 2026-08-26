@@ -11,10 +11,10 @@ export interface Publication {
 export const publications: Publication[] = [
   {
     title:
-      "Probing Reasoning Flaws and Safety Hierarchies with Chain-of-Thought Difference Amplification",
-    authors: "Kamesh R",
-    venue: "NeurIPS 2025, LLM-Evals Workshop",
-    year: 2025,
+      "Conversational Hallucination Drift: An Episodic Retrieval Framework and Error Taxonomy for Long-Term Memory Evaluation",
+    authors: "Kamesh R, Sivadhanushya P",
+    venue: "ICML 2026, Workshop on Failure Modes of Agentic AI",
+    year: 2026,
     type: "workshop",
     selected: true,
   },
@@ -22,9 +22,18 @@ export const publications: Publication[] = [
     title:
       "Global PIQA: Evaluating Physical Commonsense Reasoning Across 100+ Languages and Cultures",
     authors: "Kamesh R",
-    venue: "Preprint",
-    year: 2025,
+    venue: "NeurIPS 2026, Under review",
+    year: 2026,
     type: "preprint",
+    selected: true,
+  },
+  {
+    title:
+      "Probing Reasoning Flaws and Safety Hierarchies with Chain-of-Thought Difference Amplification",
+    authors: "Kamesh R",
+    venue: "NeurIPS 2025, LLM-Evals Workshop",
+    year: 2025,
+    type: "workshop",
     selected: true,
   },
   {
@@ -37,12 +46,19 @@ export const publications: Publication[] = [
     selected: true,
   },
   {
-    title: "PerplexMATH: Steering LLMs Toward Mathematical Reasoning",
-    authors: "Jerome Francis, Kamesh R, Serena Pei",
-    venue: "ICML 2025, NewInML Workshop (Poster)",
+    title: "Exploring Generalization in NLA's",
+    authors: "Kamesh R",
+    venue: "Selected article",
     year: 2025,
-    type: "workshop",
-    links: { poster: "#" },
+    type: "preprint",
+    selected: false,
+  },
+  {
+    title: "Calibrating Activation Vectors using Norm",
+    authors: "Kamesh R",
+    venue: "Selected article",
+    year: 2025,
+    type: "preprint",
     selected: false,
   },
 ];
